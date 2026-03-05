@@ -21,7 +21,7 @@ display:flex;
 justify-content:center;
 align-items:center;
 z-index:9999;
-font-size:30px;
+font-size:32px;
 color:#38bdf8;
 animation:fadeOut 1s ease 2s forwards;
 }
@@ -47,7 +47,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* BACKGROUND */
+/* BACKGROUND PARTICLES */
 
 body::before{
 content:"";
@@ -138,11 +138,11 @@ section{
 padding:80px 10%;
 }
 
-/* GRID */
+/* PROJECT GRID */
 
 .projects{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:25px;
 margin-top:40px;
 }
@@ -166,7 +166,7 @@ box-shadow:0 0 25px #38bdf8;
 
 .card img{
 width:100%;
-height:160px;
+height:170px;
 object-fit:cover;
 }
 
@@ -181,6 +181,15 @@ color:#38bdf8;
 
 .card p{
 color:#94a3b8;
+}
+
+/* FEATURE LIST */
+
+.features{
+margin-top:10px;
+font-size:14px;
+color:#cbd5f5;
+line-height:1.6;
 }
 
 /* BUTTONS */
@@ -215,10 +224,19 @@ box-shadow:0 0 20px #22c55e;
 transform:scale(1.1);
 }
 
-.coming{
-background:#1e293b;
-color:#94a3b8;
-cursor:not-allowed;
+/* SCROLL ANIMATION */
+
+.hidden{
+opacity:0;
+transform:translateY(60px) scale(.95);
+filter:blur(10px);
+transition:all 1s;
+}
+
+.show{
+opacity:1;
+transform:translateY(0) scale(1);
+filter:blur(0);
 }
 
 /* FOOTER */
@@ -228,19 +246,6 @@ text-align:center;
 padding:30px;
 background:#020617;
 color:#94a3b8;
-}
-
-/* SCROLL ANIMATION */
-
-.hidden{
-opacity:0;
-transform:translateY(40px);
-transition:all 1s;
-}
-
-.show{
-opacity:1;
-transform:translateY(0);
 }
 
 </style>
@@ -275,162 +280,78 @@ Loading Portfolio...
 
 </section>
 
-<section id="about" class="hidden">
-
-<h2>About Me</h2>
-
-<p>
-I'm a Roblox developer specialized in Lua scripting,
-game systems, inventories, rebirth systems,
-and advanced gameplay mechanics.
-</p>
-
-</section>
-
 <section id="projects" class="hidden">
 
-<h2>Projects</h2>
+<h2>Featured Systems</h2>
 
 <div class="projects">
 
-<!-- 1 -->
+<!-- FULL SHOP SYSTEM -->
+
 <div class="card">
+
 <img src="https://picsum.photos/400/200?1">
+
 <div class="card-content">
-<h3>Egg Hatching Shop + UI</h3>
-<p>Complete egg shop system with UI.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="join" onclick="joinGame()">Test</button>
+
+<h3>Full Shop System</h3>
+
+<p>Complete monetization shop for simulator games.</p>
+
+<div class="features">
+
+💰 Multiple Currencies  
+🧪 Potion Shop  
+⚔️ Weapons / Tools  
+🎮 Gamepasses  
+💳 Developer Products  
+🐾 Pet Shop  
+📦 Item Inventory System  
+
 </div>
+
+<div class="buttons">
+
+<button class="view">View</button>
+
+<button class="join" onclick="joinGame()">Test</button>
+
+</div>
+
 </div>
 </div>
 
-<!-- 2 -->
+<!-- EGG HATCHING -->
+
 <div class="card">
+
 <img src="https://picsum.photos/400/200?2">
+
 <div class="card-content">
-<h3>Egg Hatching System + UI</h3>
-<p>Pet hatch system with animation.</p>
+
+<h3>Egg Hatching System</h3>
+
+<p>Advanced pet hatching mechanics.</p>
+
+<div class="features">
+
+🥚 Multi Egg Hatch  
+✨ Hatch Animation  
+📊 Pet Rarity System  
+🐾 Pet Inventory  
+🔄 Auto Hatch  
+⚡ Luck Boost Support  
+
+</div>
+
 <div class="buttons">
+
 <button class="view">View</button>
+
 <button class="join" onclick="joinGame()">Test</button>
-</div>
-</div>
+
 </div>
 
-<!-- 3 -->
-<div class="card">
-<img src="https://picsum.photos/400/200?3">
-<div class="card-content">
-<h3>Spin Wheel + UI</h3>
-<p>Reward wheel with animated UI.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="join" onclick="joinGame()">Test</button>
-</div>
-</div>
-</div>
-
-<!-- 4 -->
-<div class="card">
-<img src="https://picsum.photos/400/200?4">
-<div class="card-content">
-<h3>Click Simulator</h3>
-<p>Core simulator gameplay systems.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="join" onclick="joinGame()">Test</button>
-</div>
-</div>
-</div>
-
-<!-- 5 -->
-<div class="card">
-<img src="https://picsum.photos/400/200?5">
-<div class="card-content">
-<h3>Trading System</h3>
-<p>Secure player trading UI.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="join" onclick="joinGame()">Test</button>
-</div>
-</div>
-</div>
-
-<!-- 6 -->
-<div class="card">
-<img src="https://picsum.photos/400/200?6">
-<div class="card-content">
-<h3>Advanced Fighting System</h3>
-<p>Combat system connected to weapons and loot boxes.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="join" onclick="joinGame()">Test</button>
-</div>
-</div>
-</div>
-
-<!-- 7 -->
-<div class="card">
-<img src="https://picsum.photos/400/200?7">
-<div class="card-content">
-<h3>Daily Reward System</h3>
-<p>Login reward cooldown system.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="join" onclick="joinGame()">Test</button>
-</div>
-</div>
-</div>
-
-<!-- 8 -->
-<div class="card">
-<img src="https://picsum.photos/400/200?8">
-<div class="card-content">
-<h3>Stamina + Dash + Ability</h3>
-<p>Advanced movement mechanics.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="join" onclick="joinGame()">Test</button>
-</div>
-</div>
-</div>
-
-<!-- 9 -->
-<div class="card">
-<img src="https://picsum.photos/400/200?9">
-<div class="card-content">
-<h3>Skill Tree / Brain Route</h3>
-<p>Player upgrade system.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="join" onclick="joinGame()">Test</button>
-</div>
-</div>
-</div>
-
-<!-- 10 -->
-<div class="card">
-<img src="https://picsum.photos/400/200?10">
-<div class="card-content">
-<h3>Profile System</h3>
-<p>Player stats and profile.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="join" onclick="joinGame()">Test</button>
-</div>
-</div>
-</div>
-
-<!-- SECRET MAP -->
-
-<div class="card">
-<img src="https://picsum.photos/400/200?11">
-<div class="card-content">
-<h3>Secret Map Project</h3>
-<p>Huge map project currently in development.</p>
-<button class="coming">Coming Soon</button>
 </div>
 </div>
 
@@ -459,6 +380,8 @@ function joinGame(){
 window.open("https://www.roblox.com/games/123456789","_blank")
 }
 
+/* SCROLL ANIMATION */
+
 const observer = new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
@@ -467,7 +390,9 @@ entry.target.classList.add("show")
 })
 })
 
-document.querySelectorAll(".hidden").forEach(el=>observer.observe(el))
+document.querySelectorAll(".hidden").forEach(el=>{
+observer.observe(el)
+})
 
 </script>
 
