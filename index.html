@@ -1,45 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Hero - Roblox Developer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hero | Roblox Developer</title>
 
 <style>
 
 body{
-font-family: Arial;
+margin:0;
+font-family:Arial;
 background:#0f172a;
 color:white;
-margin:0;
 }
 
 header{
-background:#1e293b;
-padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 10%;
+background:#020617;
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+color:#38bdf8;
+}
+
+nav a{
+color:white;
+margin-left:20px;
+text-decoration:none;
+}
+
+.hero{
 text-align:center;
+padding:120px 20px;
+}
+
+.hero h1{
+font-size:50px;
+}
+
+.hero span{
+color:#38bdf8;
+}
+
+.hero p{
+color:#94a3b8;
+}
+
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:12px 25px;
+background:#38bdf8;
+color:black;
+border-radius:8px;
+text-decoration:none;
+font-weight:bold;
 }
 
 section{
-padding:40px;
+padding:80px 10%;
 }
 
-.game{
-background:#1e293b;
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:#020617;
 padding:20px;
-margin:20px;
-border-radius:10px;
+border-radius:12px;
+transition:0.3s;
 }
 
-button{
-background:#22c55e;
-border:none;
-padding:10px 20px;
-border-radius:6px;
-color:white;
-cursor:pointer;
+.card:hover{
+transform:translateY(-10px);
 }
 
-button:hover{
-background:#16a34a;
+footer{
+text-align:center;
+padding:30px;
+background:#020617;
+color:#94a3b8;
 }
 
 </style>
@@ -49,47 +98,79 @@ background:#16a34a;
 <body>
 
 <header>
-<h1>Hero</h1>
-<p>Roblox Game Developer</p>
+
+<div class="logo">HeroDev</div>
+
+<nav>
+<a href="#about">About</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</nav>
+
 </header>
 
-<section>
+<section class="hero">
 
-<h2>My Games</h2>
+<h1>Hello I'm <span>Hero</span></h1>
 
-<div class="game">
-<h3>Click Simulator</h3>
-<p>Click to earn coins and unlock powerful weapons.</p>
-<button onclick="window.open('https://www.roblox.com')">
-Play Game
-</button>
-</div>
+<p>Roblox Developer | Lua Scripter</p>
 
-<div class="game">
-<h3>Sword Battle</h3>
-<p>Fight enemies and level up your character.</p>
-<button onclick="window.open('https://www.roblox.com')">
-Play Game
-</button>
-</div>
+<a class="btn" href="#projects">See My Work</a>
 
 </section>
 
-<section>
+<section id="about">
 
 <h2>About Me</h2>
+
 <p>
-Roblox developer creating systems using Lua such as inventory systems, rebirth systems and combat mechanics.
+I'm a Roblox developer specialized in Lua scripting,
+game systems, inventories, rebirth systems,
+and advanced gameplay mechanics.
 </p>
 
 </section>
 
-<section>
+<section id="projects">
 
-<h2>Contact</h2>
-<p>Discord: hero_dev</p>
+<h2>Projects</h2>
+
+<div class="projects">
+
+<div class="card">
+<h3>Inventory System</h3>
+<p>Advanced OOP inventory system with UI.</p>
+</div>
+
+<div class="card">
+<h3>Rebirth System</h3>
+<p>Player rebirth system with DataStore saving.</p>
+</div>
+
+<div class="card">
+<h3>Combat System</h3>
+<p>Weapon and damage system with animations.</p>
+</div>
+
+</div>
 
 </section>
+
+<section id="contact">
+
+<h2>Contact</h2>
+
+<p>Discord: hero_dev</p>
+
+<p>Email: hero@example.com</p>
+
+</section>
+
+<footer>
+
+<p>© 2026 Hero Roblox Developer</p>
+
+</footer>
 
 </body>
 </html>
