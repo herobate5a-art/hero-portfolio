@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -70,7 +69,7 @@ z-index:-1;
 100%{transform:translate(-300px,-300px);}
 }
 
-/* MOUSE GLOW (صغرناها 75%) */
+/* MOUSE GLOW */
 
 .cursor{
 position:fixed;
@@ -247,7 +246,7 @@ padding:10px 20px;
 border-radius:8px;
 }
 
-/* SCROLL ANIMATION */
+/* SCROLL */
 
 .hidden{
 opacity:0;
@@ -271,7 +270,6 @@ border-top:1px solid #1e293b;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -294,9 +292,7 @@ border-top:1px solid #1e293b;
 <section class="hero hidden">
 
 <h1>Hello I'm <span>Hero</span></h1>
-
 <p>Roblox Developer | Lua Scripter</p>
-
 <a class="btn" href="#projects">See My Work</a>
 
 </section>
@@ -318,10 +314,11 @@ advanced game systems and gameplay mechanics.
 
 <div class="projects">
 
+<!-- CARD 1 -->
 <div class="card">
 <img src="https://picsum.photos/400/200?1">
 <div class="card-content">
-<h3>Full Shop System + UI</h3>
+<h3>Egg Hatching Shop + UI</h3>
 <p>Complete egg shop system.</p>
 <div class="buttons">
 <button class="view">View</button>
@@ -330,6 +327,7 @@ advanced game systems and gameplay mechanics.
 </div>
 </div>
 
+<!-- CARD 2 -->
 <div class="card">
 <img src="https://picsum.photos/400/200?2">
 <div class="card-content">
@@ -339,6 +337,107 @@ advanced game systems and gameplay mechanics.
 <button class="view">View</button>
 <button class="test" onclick="joinGame()">Test</button>
 </div>
+</div>
+</div>
+
+<!-- CARD 3 -->
+<div class="card">
+<img src="https://picsum.photos/400/200?3">
+<div class="card-content">
+<h3>Spin Wheel + UI</h3>
+<p>Reward wheel system.</p>
+<div class="buttons">
+<button class="view">View</button>
+<button class="test">Test</button>
+</div>
+</div>
+</div>
+
+<!-- CARD 4 -->
+<div class="card">
+<img src="https://picsum.photos/400/200?4">
+<div class="card-content">
+<h3>Click Simulator</h3>
+<p>Simulator gameplay system.</p>
+<div class="buttons">
+<button class="view">View</button>
+<button class="test">Test</button>
+</div>
+</div>
+</div>
+
+<!-- CARD 5 -->
+<div class="card">
+<img src="https://picsum.photos/400/200?5">
+<div class="card-content">
+<h3>Trading System</h3>
+<p>Secure player trading UI.</p>
+<div class="buttons">
+<button class="view">View</button>
+<button class="test">Test</button>
+</div>
+</div>
+</div>
+
+<!-- CARD 6 -->
+<div class="card">
+<img src="https://picsum.photos/400/200?6">
+<div class="card-content">
+<h3>Full Fighting System</h3>
+<p>Combat system for weapons.</p>
+<div class="buttons">
+<button class="view">View</button>
+<button class="test">Test</button>
+</div>
+</div>
+</div>
+
+<!-- CARD 7 -->
+<div class="card">
+<img src="https://picsum.photos/400/200?7">
+<div class="card-content">
+<h3>Daily Reward System</h3>
+<p>Login reward cooldown.</p>
+<div class="buttons">
+<button class="view">View</button>
+<button class="test">Test</button>
+</div>
+</div>
+</div>
+
+<!-- CARD 8 -->
+<div class="card">
+<img src="https://picsum.photos/400/200?8">
+<div class="card-content">
+<h3>Stamina + Dash + Ability</h3>
+<p>Advanced movement mechanics.</p>
+<div class="buttons">
+<button class="view">View</button>
+<button class="test">Test</button>
+</div>
+</div>
+</div>
+
+<!-- CARD 9 -->
+<div class="card">
+<img src="https://picsum.photos/400/200?9">
+<div class="card-content">
+<h3>Profile System</h3>
+<p>Player stats profile.</p>
+<div class="buttons">
+<button class="view">View</button>
+<button class="test">Test</button>
+</div>
+</div>
+</div>
+
+<!-- CARD 10 -->
+<div class="card">
+<img src="https://picsum.photos/400/200?10">
+<div class="card-content">
+<h3>Secret Map Project</h3>
+<p>Huge map project.</p>
+<button class="coming">Coming Soon</button>
 </div>
 </div>
 
@@ -363,19 +462,13 @@ advanced game systems and gameplay mechanics.
 
 <script>
 
-/* يبدأ الموقع من فوق */
-
 window.addEventListener("load",()=>{
 window.scrollTo(0,0)
 })
 
-/* JOIN GAME */
-
 function joinGame(){
 window.open("https://www.roblox.com/games/123456789","_blank")
 }
-
-/* SCROLL ANIMATION */
 
 const observer = new IntersectionObserver((entries)=>{
 entries.forEach(entry=>{
@@ -383,21 +476,17 @@ if(entry.isIntersecting){
 entry.target.classList.add("show")
 }
 })
-},{
-threshold:0.2
-})
+},{threshold:0.2})
 
-document.querySelectorAll(".hidden").forEach((el)=>{
+document.querySelectorAll(".hidden").forEach(el=>{
 observer.observe(el)
 })
 
-/* MOUSE GLOW */
-
-const cursor = document.querySelector(".cursor")
+const cursor=document.querySelector(".cursor")
 
 document.addEventListener("mousemove",(e)=>{
-cursor.style.left = e.clientX + "px"
-cursor.style.top = e.clientY + "px"
+cursor.style.left=e.clientX+"px"
+cursor.style.top=e.clientY+"px"
 })
 
 </script>
