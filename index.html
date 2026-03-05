@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -71,17 +73,45 @@ padding:80px 10%;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
+margin-top:30px;
 }
 
 .card{
 background:#020617;
-padding:20px;
+padding:25px;
 border-radius:12px;
 transition:0.3s;
+border:1px solid #1e293b;
 }
 
 .card:hover{
 transform:translateY(-10px);
+border-color:#38bdf8;
+}
+
+.card h3{
+margin-top:0;
+color:#38bdf8;
+}
+
+.card p{
+color:#94a3b8;
+}
+
+.card button{
+margin-top:15px;
+padding:10px 20px;
+background:#38bdf8;
+border:none;
+border-radius:6px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.coming{
+background:#1e293b !important;
+color:#94a3b8;
+cursor:not-allowed;
 }
 
 footer{
@@ -138,18 +168,69 @@ and advanced gameplay mechanics.
 <div class="projects">
 
 <div class="card">
-<h3>Inventory System</h3>
-<p>Advanced OOP inventory system with UI.</p>
+<h3>Egg Hatching Shop + UI</h3>
+<p>Complete egg shop system with UI and hatching mechanics.</p>
+<button>View</button>
 </div>
 
 <div class="card">
-<h3>Rebirth System</h3>
-<p>Player rebirth system with DataStore saving.</p>
+<h3>Egg Hatching System + UI</h3>
+<p>Pet hatching system with animations and interface.</p>
+<button>View</button>
 </div>
 
 <div class="card">
-<h3>Combat System</h3>
-<p>Weapon and damage system with animations.</p>
+<h3>Spin Wheel + UI</h3>
+<p>Reward wheel system with animated UI.</p>
+<button>View</button>
+</div>
+
+<div class="card">
+<h3>Click Simulator</h3>
+<p>Core systems for click simulator gameplay.</p>
+<button>View</button>
+</div>
+
+<div class="card">
+<h3>Trading System</h3>
+<p>Secure player to player trading interface.</p>
+<button>View</button>
+</div>
+
+<div class="card">
+<h3>Advanced Fighting System</h3>
+<p>Full combat system connected with weapons and loot boxes.</p>
+<button>View</button>
+</div>
+
+<div class="card">
+<h3>Daily Reward System</h3>
+<p>Login reward system with cooldown timer.</p>
+<button>View</button>
+</div>
+
+<div class="card">
+<h3>Stamina + Dash + Ability System</h3>
+<p>Advanced movement mechanics with stamina and abilities.</p>
+<button>View</button>
+</div>
+
+<div class="card">
+<h3>Skill Tree / Brain Route</h3>
+<p>Player upgrade and skill path progression system.</p>
+<button>View</button>
+</div>
+
+<div class="card">
+<h3>Profile System</h3>
+<p>Player profile with stats and progress tracking.</p>
+<button>View</button>
+</div>
+
+<div class="card">
+<h3>Secret Map Project</h3>
+<p>Huge map project currently in development.</p>
+<button class="coming">Coming Soon</button>
 </div>
 
 </div>
@@ -173,4 +254,5 @@ and advanced gameplay mechanics.
 </footer>
 
 </body>
+
 </html>
