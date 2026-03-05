@@ -10,6 +10,21 @@
 
 <style>
 
+/* GLOBAL */
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:Arial;
+background:#020617;
+color:white;
+overflow-x:hidden;
+}
+
 /* LOADER */
 
 #loader{
@@ -20,10 +35,10 @@ background:#020617;
 display:flex;
 justify-content:center;
 align-items:center;
-z-index:9999;
-font-size:30px;
+font-size:32px;
 color:#38bdf8;
-animation:fadeOut 1s ease 2s forwards;
+z-index:9999;
+animation:fadeOut 1s ease 2.5s forwards;
 }
 
 @keyframes fadeOut{
@@ -33,21 +48,7 @@ visibility:hidden;
 }
 }
 
-/* BODY */
-
-html{
-scroll-behavior:smooth;
-}
-
-body{
-margin:0;
-font-family:Arial;
-background:#0f172a;
-color:white;
-overflow-x:hidden;
-}
-
-/* BACKGROUND */
+/* BACKGROUND PARTICLES */
 
 body::before{
 content:"";
@@ -56,13 +57,25 @@ width:200%;
 height:200%;
 background:radial-gradient(circle,#38bdf822 1px,transparent 1px);
 background-size:40px 40px;
-animation:bgMove 30s linear infinite;
+animation:bgMove 40s linear infinite;
 z-index:-1;
 }
 
 @keyframes bgMove{
 0%{transform:translate(0,0);}
-100%{transform:translate(-200px,-200px);}
+100%{transform:translate(-300px,-300px);}
+}
+
+/* MOUSE GLOW */
+
+.cursor{
+position:fixed;
+width:300px;
+height:300px;
+background:radial-gradient(circle,#38bdf833 0%,transparent 70%);
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:0;
 }
 
 /* HEADER */
@@ -76,6 +89,7 @@ background:#020617;
 position:sticky;
 top:0;
 z-index:10;
+border-bottom:1px solid #1e293b;
 }
 
 .logo{
@@ -86,9 +100,9 @@ color:#38bdf8;
 
 nav a{
 color:white;
-margin-left:20px;
+margin-left:25px;
 text-decoration:none;
-transition:0.3s;
+transition:.3s;
 }
 
 nav a:hover{
@@ -99,11 +113,11 @@ color:#38bdf8;
 
 .hero{
 text-align:center;
-padding:120px 20px;
+padding:130px 20px;
 }
 
 .hero h1{
-font-size:55px;
+font-size:60px;
 }
 
 .hero span{
@@ -111,25 +125,26 @@ color:#38bdf8;
 }
 
 .hero p{
+margin-top:10px;
 color:#94a3b8;
 }
 
 .btn{
 display:inline-block;
-margin-top:20px;
-padding:12px 25px;
+margin-top:25px;
+padding:14px 30px;
 background:#38bdf8;
 color:black;
-border-radius:8px;
+border-radius:10px;
 text-decoration:none;
 font-weight:bold;
-box-shadow:0 0 15px #38bdf8;
-transition:0.3s;
+box-shadow:0 0 20px #38bdf8;
+transition:.3s;
 }
 
 .btn:hover{
 transform:scale(1.1);
-box-shadow:0 0 25px #38bdf8;
+box-shadow:0 0 35px #38bdf8;
 }
 
 /* SECTIONS */
@@ -138,12 +153,12 @@ section{
 padding:80px 10%;
 }
 
-/* GRID */
+/* PROJECT GRID */
 
 .projects{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
+gap:30px;
 margin-top:40px;
 }
 
@@ -151,16 +166,17 @@ margin-top:40px;
 
 .card{
 background:#020617;
-border-radius:14px;
+border-radius:16px;
 overflow:hidden;
 border:1px solid #1e293b;
-transition:0.4s;
+transition:.4s;
+transform-style:preserve-3d;
 }
 
 .card:hover{
-transform:scale(1.05);
-border-color:#38bdf8;
-box-shadow:0 0 25px #38bdf8;
+transform:rotateX(6deg) rotateY(-6deg) scale(1.05);
+box-shadow:0 20px 40px rgba(0,0,0,.6),
+0 0 30px #38bdf8;
 }
 
 .card img{
@@ -174,8 +190,8 @@ padding:20px;
 }
 
 .card h3{
-margin-top:0;
 color:#38bdf8;
+margin-bottom:8px;
 }
 
 .card p{
@@ -193,14 +209,18 @@ margin-top:15px;
 .card button{
 padding:10px 20px;
 border:none;
-border-radius:6px;
-font-weight:bold;
+border-radius:8px;
 cursor:pointer;
-transition:0.3s;
+font-weight:bold;
+transition:.3s;
 }
 
 .view{
 background:#38bdf8;
+}
+
+.view:hover{
+box-shadow:0 0 20px #38bdf8;
 }
 
 .test{
@@ -210,7 +230,7 @@ box-shadow:0 0 10px #22c55e;
 }
 
 .test:hover{
-box-shadow:0 0 20px #22c55e;
+box-shadow:0 0 25px #22c55e;
 transform:scale(1.1);
 }
 
@@ -219,29 +239,30 @@ background:#1e293b;
 color:#94a3b8;
 cursor:not-allowed;
 padding:10px 20px;
-border-radius:6px;
-}
-
-/* FOOTER */
-
-footer{
-text-align:center;
-padding:30px;
-background:#020617;
-color:#94a3b8;
+border-radius:8px;
 }
 
 /* SCROLL ANIMATION */
 
 .hidden{
 opacity:0;
-transform:translateY(80px);
+transform:translateY(70px);
 transition:all 1s;
 }
 
 .show{
 opacity:1;
 transform:translateY(0);
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:40px;
+background:#020617;
+color:#94a3b8;
+border-top:1px solid #1e293b;
 }
 
 </style>
@@ -251,6 +272,7 @@ transform:translateY(0);
 <body>
 
 <div id="loader">Loading Portfolio...</div>
+<div class="cursor"></div>
 
 <header>
 
@@ -291,7 +313,6 @@ advanced game systems and gameplay mechanics.
 
 <div class="projects">
 
-<!-- 1 -->
 <div class="card">
 <img src="https://picsum.photos/400/200?1">
 <div class="card-content">
@@ -304,7 +325,6 @@ advanced game systems and gameplay mechanics.
 </div>
 </div>
 
-<!-- 2 -->
 <div class="card">
 <img src="https://picsum.photos/400/200?2">
 <div class="card-content">
@@ -317,7 +337,6 @@ advanced game systems and gameplay mechanics.
 </div>
 </div>
 
-<!-- 3 -->
 <div class="card">
 <img src="https://picsum.photos/400/200?3">
 <div class="card-content">
@@ -330,7 +349,6 @@ advanced game systems and gameplay mechanics.
 </div>
 </div>
 
-<!-- 4 -->
 <div class="card">
 <img src="https://picsum.photos/400/200?4">
 <div class="card-content">
@@ -343,7 +361,6 @@ advanced game systems and gameplay mechanics.
 </div>
 </div>
 
-<!-- 5 -->
 <div class="card">
 <img src="https://picsum.photos/400/200?5">
 <div class="card-content">
@@ -356,7 +373,6 @@ advanced game systems and gameplay mechanics.
 </div>
 </div>
 
-<!-- 6 -->
 <div class="card">
 <img src="https://picsum.photos/400/200?6">
 <div class="card-content">
@@ -369,7 +385,6 @@ advanced game systems and gameplay mechanics.
 </div>
 </div>
 
-<!-- 7 -->
 <div class="card">
 <img src="https://picsum.photos/400/200?7">
 <div class="card-content">
@@ -382,7 +397,6 @@ advanced game systems and gameplay mechanics.
 </div>
 </div>
 
-<!-- 8 -->
 <div class="card">
 <img src="https://picsum.photos/400/200?8">
 <div class="card-content">
@@ -395,11 +409,10 @@ advanced game systems and gameplay mechanics.
 </div>
 </div>
 
-<!-- 9 -->
 <div class="card">
 <img src="https://picsum.photos/400/200?9">
 <div class="card-content">
-<h3>Skill Tree / Brain Route</h3>
+<h3>BrainRot</h3>
 <p>Player upgrade system.</p>
 <div class="buttons">
 <button class="view">View</button>
@@ -408,7 +421,6 @@ advanced game systems and gameplay mechanics.
 </div>
 </div>
 
-<!-- 10 -->
 <div class="card">
 <img src="https://picsum.photos/400/200?10">
 <div class="card-content">
@@ -420,8 +432,6 @@ advanced game systems and gameplay mechanics.
 </div>
 </div>
 </div>
-
-<!-- SECRET -->
 
 <div class="card">
 <img src="https://picsum.photos/400/200?11">
@@ -453,6 +463,8 @@ advanced game systems and gameplay mechanics.
 
 <script>
 
+/* JOIN GAME */
+
 function joinGame(){
 window.open("https://www.roblox.com/games/123456789","_blank")
 }
@@ -468,6 +480,15 @@ entry.target.classList.add("show")
 })
 
 document.querySelectorAll(".hidden").forEach(el=>observer.observe(el))
+
+/* MOUSE GLOW */
+
+const cursor = document.querySelector(".cursor")
+
+document.addEventListener("mousemove",e=>{
+cursor.style.left = e.clientX + "px"
+cursor.style.top = e.clientY + "px"
+})
 
 </script>
 
