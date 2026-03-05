@@ -18,6 +18,10 @@ margin:0;
 padding:0;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 font-family:Arial;
 background:#020617;
@@ -48,7 +52,7 @@ visibility:hidden;
 }
 }
 
-/* BACKGROUND PARTICLES */
+/* BACKGROUND */
 
 body::before{
 content:"";
@@ -66,16 +70,17 @@ z-index:-1;
 100%{transform:translate(-300px,-300px);}
 }
 
-/* MOUSE GLOW */
+/* MOUSE GLOW (صغرناها 75%) */
 
 .cursor{
 position:fixed;
-width:300px;
-height:300px;
-background:radial-gradient(circle,#38bdf833 0%,transparent 70%);
+width:75px;
+height:75px;
+background:radial-gradient(circle,#38bdf844 0%,transparent 70%);
 pointer-events:none;
 transform:translate(-50%,-50%);
 z-index:0;
+border-radius:50%;
 }
 
 /* HEADER */
@@ -113,7 +118,7 @@ color:#38bdf8;
 
 .hero{
 text-align:center;
-padding:130px 20px;
+padding:140px 20px;
 }
 
 .hero h1{
@@ -246,8 +251,8 @@ border-radius:8px;
 
 .hidden{
 opacity:0;
-transform:translateY(70px);
-transition:all 1s;
+transform:translateY(80px);
+transition:all 1s ease;
 }
 
 .show{
@@ -337,111 +342,6 @@ advanced game systems and gameplay mechanics.
 </div>
 </div>
 
-<div class="card">
-<img src="https://picsum.photos/400/200?3">
-<div class="card-content">
-<h3>Spin Wheel + UI</h3>
-<p>Reward wheel system.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="test">Test</button>
-</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/400/200?4">
-<div class="card-content">
-<h3>Click Simulator</h3>
-<p>Simulator gameplay system.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="test">Test</button>
-</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/400/200?5">
-<div class="card-content">
-<h3>Trading System</h3>
-<p>Secure player trading UI.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="test">Test</button>
-</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/400/200?6">
-<div class="card-content">
-<h3>Full Fighting System</h3>
-<p>Combat system connected to all weapons.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="test">Test</button>
-</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/400/200?7">
-<div class="card-content">
-<h3>Daily Reward System</h3>
-<p>Login reward cooldown.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="test">Test</button>
-</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/400/200?8">
-<div class="card-content">
-<h3>Stamina + Dash + Ability</h3>
-<p>Advanced movement mechanics.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="test">Test</button>
-</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/400/200?9">
-<div class="card-content">
-<h3>BrainRot</h3>
-<p>Player upgrade system.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="test">Test</button>
-</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/400/200?10">
-<div class="card-content">
-<h3>Profile System</h3>
-<p>Player stats profile.</p>
-<div class="buttons">
-<button class="view">View</button>
-<button class="test">Test</button>
-</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/400/200?11">
-<div class="card-content">
-<h3>Secret Map Project</h3>
-<p>Huge map project in development.</p>
-<button class="coming">Coming Soon</button>
-</div>
-</div>
-
 </div>
 
 </section>
@@ -463,6 +363,12 @@ advanced game systems and gameplay mechanics.
 
 <script>
 
+/* يبدأ الموقع من فوق */
+
+window.addEventListener("load",()=>{
+window.scrollTo(0,0)
+})
+
 /* JOIN GAME */
 
 function joinGame(){
@@ -471,21 +377,25 @@ window.open("https://www.roblox.com/games/123456789","_blank")
 
 /* SCROLL ANIMATION */
 
-const observer = new IntersectionObserver(entries=>{
+const observer = new IntersectionObserver((entries)=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
 entry.target.classList.add("show")
 }
 })
+},{
+threshold:0.2
 })
 
-document.querySelectorAll(".hidden").forEach(el=>observer.observe(el))
+document.querySelectorAll(".hidden").forEach((el)=>{
+observer.observe(el)
+})
 
 /* MOUSE GLOW */
 
 const cursor = document.querySelector(".cursor")
 
-document.addEventListener("mousemove",e=>{
+document.addEventListener("mousemove",(e)=>{
 cursor.style.left = e.clientX + "px"
 cursor.style.top = e.clientY + "px"
 })
