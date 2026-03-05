@@ -82,10 +82,12 @@ border-radius:12px;
 overflow:hidden;
 transition:0.3s;
 border:1px solid #1e293b;
+
+animation:float 4s ease-in-out infinite;
 }
 
 .card:hover{
-transform:translateY(-8px);
+transform:translateY(-12px) scale(1.02);
 border-color:#38bdf8;
 }
 
@@ -108,14 +110,23 @@ color:#38bdf8;
 color:#94a3b8;
 }
 
-.card button{
+.buttons{
+display:flex;
+gap:10px;
 margin-top:15px;
+}
+
+.card button{
 padding:10px 20px;
 background:#38bdf8;
 border:none;
 border-radius:6px;
 font-weight:bold;
 cursor:pointer;
+}
+
+.join{
+background:#22c55e;
 }
 
 .coming{
@@ -131,7 +142,33 @@ background:#020617;
 color:#94a3b8;
 }
 
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
 </style>
+
+<script>
+
+function joinGame(){
+
+window.open("https://www.roblox.com/games/123456789", "_blank")
+
+}
+
+</script>
 
 </head>
 
@@ -182,7 +219,12 @@ and advanced gameplay mechanics.
 <div class="card-content">
 <h3>Egg Hatching Shop + UI</h3>
 <p>Complete egg shop system with UI and hatching mechanics.</p>
+
+<div class="buttons">
 <button>View</button>
+<button class="join" onclick="joinGame()">Test</button>
+</div>
+
 </div>
 </div>
 
@@ -191,7 +233,12 @@ and advanced gameplay mechanics.
 <div class="card-content">
 <h3>Egg Hatching System + UI</h3>
 <p>Pet hatching system with animations and interface.</p>
+
+<div class="buttons">
 <button>View</button>
+<button class="join" onclick="joinGame()">Test</button>
+</div>
+
 </div>
 </div>
 
@@ -200,7 +247,12 @@ and advanced gameplay mechanics.
 <div class="card-content">
 <h3>Spin Wheel + UI</h3>
 <p>Reward wheel system with animated UI.</p>
+
+<div class="buttons">
 <button>View</button>
+<button class="join" onclick="joinGame()">Test</button>
+</div>
+
 </div>
 </div>
 
@@ -209,7 +261,12 @@ and advanced gameplay mechanics.
 <div class="card-content">
 <h3>Click Simulator</h3>
 <p>Core systems for click simulator gameplay.</p>
+
+<div class="buttons">
 <button>View</button>
+<button class="join" onclick="joinGame()">Test</button>
+</div>
+
 </div>
 </div>
 
@@ -218,52 +275,12 @@ and advanced gameplay mechanics.
 <div class="card-content">
 <h3>Trading System</h3>
 <p>Secure player to player trading interface.</p>
+
+<div class="buttons">
 <button>View</button>
-</div>
+<button class="join" onclick="joinGame()">Test</button>
 </div>
 
-<div class="card">
-<img src="https://picsum.photos/400/200?6">
-<div class="card-content">
-<h3>Advanced Fighting System</h3>
-<p>Full combat system connected with weapons and loot boxes.</p>
-<button>View</button>
-</div>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/400/200?7">
-<div class="card-content">
-<h3>Daily Reward System</h3>
-<p>Login reward system with cooldown timer.</p>
-<button>View</button>
-</div>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/400/200?8">
-<div class="card-content">
-<h3>Stamina + Dash + Ability</h3>
-<p>Advanced movement mechanics with stamina and abilities.</p>
-<button>View</button>
-</div>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/400/200?9">
-<div class="card-content">
-<h3>Skill Tree / Brain Route</h3>
-<p>Player upgrade and skill path progression system.</p>
-<button>View</button>
-</div>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/400/200?10">
-<div class="card-content">
-<h3>Profile System</h3>
-<p>Player profile with stats and progress tracking.</p>
-<button>View</button>
 </div>
 </div>
 
