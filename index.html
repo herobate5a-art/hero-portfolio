@@ -22,10 +22,25 @@ scroll-behavior:smooth;
 }
 
 body{
-font-family:Arial;
+font-family:Arial, sans-serif;
 background:#020617;
 color:white;
 overflow-x:hidden;
+}
+
+/* CUSTOM SCROLLBAR FOR BODY & MODAL */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a; 
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b; 
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8; 
 }
 
 /* LOADER */
@@ -67,6 +82,19 @@ z-index:-1;
 @keyframes bgMove{
 0%{transform:translate(0,0);}
 100%{transform:translate(-300px,-300px);}
+}
+
+/* MOUSE GLOW */
+
+.cursor{
+position:fixed;
+width:75px;
+height:75px;
+background:radial-gradient(circle,#38bdf844 0%,transparent 70%);
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:0;
+border-radius:50%;
 }
 
 /* HEADER */
@@ -135,6 +163,7 @@ transition:.3s;
 
 .btn:hover{
 transform:scale(1.1);
+box-shadow:0 0 35px #38bdf8;
 }
 
 /* SECTIONS */
@@ -160,11 +189,13 @@ border-radius:16px;
 overflow:hidden;
 border:1px solid #1e293b;
 transition:.4s;
+transform-style:preserve-3d;
 }
 
 .card:hover{
-transform:scale(1.05);
-box-shadow:0 0 30px #38bdf8;
+transform:rotateX(6deg) rotateY(-6deg) scale(1.05);
+box-shadow:0 20px 40px rgba(0,0,0,.6),
+0 0 30px #38bdf8;
 }
 
 .card img{
@@ -186,6 +217,8 @@ margin-bottom:8px;
 color:#94a3b8;
 }
 
+/* BUTTONS */
+
 .buttons{
 display:flex;
 gap:10px;
@@ -198,88 +231,150 @@ border:none;
 border-radius:8px;
 cursor:pointer;
 font-weight:bold;
+transition:.3s;
 }
 
 .view{
 background:#38bdf8;
 }
 
+.view:hover{
+box-shadow:0 0 20px #38bdf8;
+}
+
 .test{
 background:#22c55e;
 color:white;
+box-shadow:0 0 10px #22c55e;
+}
+
+.test:hover{
+box-shadow:0 0 25px #22c55e;
+transform:scale(1.1);
 }
 
 .coming{
 background:#1e293b;
 color:#94a3b8;
 cursor:not-allowed;
-}
-
-/* MODAL FRAME */
-
-#systemModal{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.7);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:1000;
-}
-
-.modal-content{
-width:70%;
-max-width:900px;
-max-height:80vh;
-overflow-y:auto;
-background:#020617;
-border:1px solid #1e293b;
-border-radius:15px;
-padding:30px;
-box-shadow:0 0 40px #38bdf8;
-animation:modalOpen .4s ease;
-}
-
-@keyframes modalOpen{
-from{
-transform:scale(.8);
-opacity:0;
-}
-to{
-transform:scale(1);
-opacity:1;
-}
-}
-
-.modal-content h2{
-color:#38bdf8;
-margin-bottom:15px;
-}
-
-.modal-content p{
-color:#94a3b8;
-line-height:1.6;
-white-space:pre-line;
-}
-
-.close-btn{
-margin-top:20px;
-padding:10px 25px;
-background:#ef4444;
-color:white;
-border:none;
+padding:10px 20px;
 border-radius:8px;
-cursor:pointer;
+width: 100%;
+margin-top: 15px;
 }
+
+/* SCROLL */
+
+.hidden{
+opacity:0;
+transform:translateY(80px);
+transition:all 1s ease;
+}
+
+.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* MODAL / POPUP SYSTEM */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-content {
+  background: #0f172a;
+  border: 1px solid #38bdf8;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 40px;
+  position: relative;
+  transform: translateY(-50px) scale(0.9);
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 40px rgba(56, 189, 248, 0.15);
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0) scale(1);
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 32px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close-btn:hover {
+  transform: scale(1.2);
+  color: #f87171;
+  text-shadow: 0 0 15px #ef4444;
+}
+
+.modal-title {
+  color: #38bdf8;
+  font-size: 28px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #1e293b;
+  padding-bottom: 15px;
+}
+
+.modal-body {
+  color: #cbd5e1;
+  line-height: 1.8;
+}
+
+.modal-body h4 {
+  color: white;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.modal-body ul {
+  margin-left: 20px;
+  margin-bottom: 15px;
+  list-style-type: disc;
+}
+
+.modal-body ul li {
+  margin-bottom: 5px;
+}
+
+/* FOOTER */
 
 footer{
 text-align:center;
 padding:40px;
-border-top:1px solid #1e293b;
+background:#020617;
 color:#94a3b8;
+border-top:1px solid #1e293b;
 }
 
 </style>
@@ -288,140 +383,384 @@ color:#94a3b8;
 <body>
 
 <div id="loader">Loading Portfolio...</div>
+<div class="cursor"></div>
 
 <header>
-
 <div class="logo">HeroDev</div>
-
 <nav>
 <a href="#about">About</a>
 <a href="#projects">Projects</a>
 <a href="#contact">Contact</a>
 </nav>
-
 </header>
 
-<section class="hero">
-
+<section class="hero hidden">
 <h1>Hello I'm <span>Hero</span></h1>
 <p>Roblox Developer | Lua Scripter</p>
-
 <a class="btn" href="#projects">See My Work</a>
-
 </section>
 
-<section id="projects">
+<section id="about" class="hidden">
+<h2>About Me</h2>
+<p>
+Roblox developer specialized in Lua scripting,
+advanced game systems and gameplay mechanics.
+</p>
+</section>
 
+<section id="projects" class="hidden">
 <h2>Projects</h2>
-
 <div class="projects">
+
+<div class="card">
+<img src="https://picsum.photos/400/200?2">
+<div class="card-content">
+<h3>Hatching Egg System</h3>
+<p>Pet hatch system with UI.</p>
+<div class="buttons">
+<button class="view" onclick="openModal('hatching')">View</button>
+<button class="test" onclick="joinGame('https://www.roblox.com/games/134109808658327/HatchingPets')">Test</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/400/200?3">
+<div class="card-content">
+<h3>Spin Wheel System</h3>
+<p>Reward wheel system with UI.</p>
+<div class="buttons">
+<button class="view" onclick="openModal('spin')">View</button>
+<button class="test" onclick="joinGame('https://www.roblox.com/games/130744078216219/SpienWheel')">Test</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/400/200?4">
+<div class="card-content">
+<h3>Click Simulator</h3>
+<p>Simulator gameplay system.</p>
+<div class="buttons">
+<button class="view" onclick="openModal('clicker')">View</button>
+<button class="test" onclick="joinGame('https://www.roblox.com/games/102709726664311/ClickSemlutor-RebirthSystem')">Test</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/400/200?5">
+<div class="card-content">
+<h3>Trading System</h3>
+<p>Secure player trading UI.</p>
+<div class="buttons">
+<button class="view" onclick="openModal('trading')">View</button>
+<button class="test" onclick="joinGame('https://www.roblox.com/games/132175922351222/TradeSystem')">Test</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/400/200?6">
+<div class="card-content">
+<h3>Full Fighting System</h3>
+<p>Advanced Hitbox & Combat system.</p>
+<div class="buttons">
+<button class="view" onclick="openModal('fighting')">View</button>
+<button class="test" onclick="joinGame('https://www.roblox.com/games/114021472064448/Stamina-and-Sprint-System')">Test</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/400/200?8">
+<div class="card-content">
+<h3>Stamina + Dash + Ability</h3>
+<p>Advanced movement mechanics.</p>
+<div class="buttons">
+<button class="view" onclick="openModal('stamina')">View</button>
+<button class="test" onclick="joinGame('https://www.roblox.com/games/114021472064448/Stamina-and-Sprint-System')">Test</button>
+</div>
+</div>
+</div>
 
 <div class="card">
 <img src="https://picsum.photos/400/200?11">
 <div class="card-content">
-<h3>Inventory System</h3>
-<p>Advanced inventory system.</p>
-
+<h3>Full OOP Inventory System</h3>
+<p>Advanced object oriented inventory.</p>
 <div class="buttons">
-<button class="view" onclick="openSystem('inventory')">View</button>
+<button class="view" onclick="openModal('inventory')">View</button>
 <button class="test" onclick="joinGame('https://www.roblox.com/games/72059232064944/InventorySystem-Armor')">Test</button>
 </div>
+</div>
+</div>
 
+<div class="card">
+<img src="https://picsum.photos/400/200?10">
+<div class="card-content">
+<h3>Secret Map Project</h3>
+<p>Huge map project.</p>
+<button class="coming">Coming Soon</button>
 </div>
 </div>
 
 </div>
-
 </section>
 
-<!-- MODAL -->
-
-<div id="systemModal">
-
-<div class="modal-content">
-
-<h2 id="systemTitle"></h2>
-
-<p id="systemDescription"></p>
-
-<button class="close-btn" onclick="closeModal()">Close</button>
-
-</div>
-
-</div>
+<section id="contact" class="hidden">
+<h2>Contact</h2>
+<p>Discord: hero_dev</p>
+<p>Email: hero@example.com</p>
+</section>
 
 <footer>
-
 <p>© 2026 Hero Roblox Developer</p>
-
 </footer>
 
+<div class="modal-overlay" id="systemModal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal()">&times;</button>
+    <h2 class="modal-title" id="modalTitle">System Title</h2>
+    <div class="modal-body" id="modalBody">
+      </div>
+  </div>
+</div>
+
 <script>
-
+// Open Roblox Game
 function joinGame(url){
-window.open(url,"_blank")
+  window.open(url,"_blank");
 }
 
-const systems = {
+// Modal Data (HTML formatted descriptions)
+const systemsData = {
+  inventory: {
+    title: "🚀 Advanced Roblox Inventory System",
+    content: `
+      <h4>🎒 Smart Inventory Management</h4>
+      <ul>
+        <li>Clean and organized inventory interface</li>
+        <li>Items displayed inside a scrollable grid layout</li>
+        <li>Supports multiple item categories (Weapons, Potions, Armor, Materials, etc.)</li>
+        <li>Automatic inventory update when items are added or removed</li>
+      </ul>
+      <h4>🧠 Object-Oriented Architecture</h4>
+      <ul>
+        <li>Built using Object-Oriented Programming (OOP)</li>
+        <li>Clean and scalable code structure</li>
+        <li>Easy to expand for large projects</li>
+      </ul>
+      <h4>⚡ Efficient Client-Server Communication</h4>
+      <ul>
+        <li>Uses RemoteEvents and RemoteFunctions</li>
+        <li>Real-time synchronization between client and server</li>
+        <li>Optimized to reduce unnecessary server load</li>
+      </ul>
+      <h4>🎮 Interactive User Interface</h4>
+      <ul>
+        <li>Smooth and responsive UI design</li>
+        <li>Visual feedback when selecting items</li>
+        <li>Highlight effects for the selected item</li>
+      </ul>
+      <h4>📊 Dynamic Item Information</h4>
+      <p>Each item can display detailed information such as Name, Type, Rarity, Description, and Stats.</p>
+      <h4>🔄 Real-Time Inventory Updates</h4>
+      <p>The inventory updates instantly when receiving, using, or selling an item.</p>
+      <h4>💾 DataStore Integration</h4>
+      <p>Supports persistent item saving safely upon joining and leaving.</p>
+    `
+  },
+  spin: {
+    title: "🎡 Advanced Roblox Spin Wheel System",
+    content: `
+      <h4>🎯 Weighted Reward System</h4>
+      <ul>
+        <li>Advanced rarity-based reward system</li>
+        <li>Each reward has its own drop chance</li>
+        <li>Supports dynamic luck multipliers</li>
+      </ul>
+      <h4>🍀 Luck Multiplier System</h4>
+      <p>Fully integrated luck system supporting GamePass boosts (e.g., +25%, +50% rare drop chances).</p>
+      <h4>🎁 Multiple Reward Types</h4>
+      <ul>
+        <li>💰 Currency rewards (Coins)</li>
+        <li>🎒 Tool rewards (Weapons, Items)</li>
+        <li>🎟️ Extra Spins & 💎 Special rewards</li>
+      </ul>
+      <h4>🎬 Smooth Spin Animation</h4>
+      <ul>
+        <li>High-quality wheel spinning animation (TweenService)</li>
+        <li>Includes immersive sound effects (Tick, Click, Win sounds)</li>
+        <li>Winning reward appears in a special animated highlight</li>
+      </ul>
+      <h4>⏳ Daily Free Spin & Purchase System</h4>
+      <p>Players receive 1 free spin every 24 hours, and can purchase additional spins using Developer Products.</p>
+      <h4>🛡️ Anti-Exploit Protection</h4>
+      <p>Server-controlled reward selection prevents client manipulation and exploits.</p>
+    `
+  },
+  stamina: {
+    title: "⚡ Advanced Stamina, Sprint & Dash System",
+    content: `
+      <h4>⚡ Stamina-Based Movement System</h4>
+      <ul>
+        <li>Fully integrated stamina system controlling player actions.</li>
+        <li>Stamina decreases when sprinting or dashing.</li>
+        <li>Automatic stamina regeneration over time.</li>
+      </ul>
+      <h4>🏃 Sprint System</h4>
+      <ul>
+        <li>Smooth sprint mechanic activated with a customizable key.</li>
+        <li>Supports Toggle or Hold Sprint Modes.</li>
+        <li>Automatically plays running animation.</li>
+      </ul>
+      <h4>⚡ Dash Ability</h4>
+      <p>Supports dash mechanics that consume stamina and prevents usage when insufficient.</p>
+      <h4>📊 Real-Time Stamina UI</h4>
+      <ul>
+        <li>Stamina bar updates in real time with smooth tween animations.</li>
+        <li>Percentage-based stamina display.</li>
+      </ul>
+      <h4>🧠 State Detection System</h4>
+      <p>Detects states like Running, Jumping, Falling, and Standing still to adjust animations dynamically.</p>
+    `
+  },
+  clicker: {
+    title: "🖱️ Advanced Click Simulator & Rebirth System",
+    content: `
+      <h4>🖱️ Clicker Gameplay System</h4>
+      <ul>
+        <li>Fully functional click-based progression system.</li>
+        <li>Includes anti-spam protection to prevent click exploits.</li>
+        <li>Dynamic multipliers scale with player rebirths.</li>
+      </ul>
+      <h4>🔄 Rebirth Progression System</h4>
+      <ul>
+        <li>Rebirth resets clicks while providing permanent bonuses (Gems, Multipliers).</li>
+        <li>Progressive Rebirth Cost Scaling (exponential formula).</li>
+        <li>Animated Gem reward pop-up effects when rebirthing.</li>
+      </ul>
+      <h4>📊 Real-Time Progress Tracking</h4>
+      <p>UI displays current clicks, required clicks, and multiplier boosts with a dynamic progress bar.</p>
+      <h4>💾 Persistent Data Saving & Security</h4>
+      <p>Server-side validation for all clicks and rebirths, integrated with DataStoreService for saving progress.</p>
+    `
+  },
+  trading: {
+    title: "🔄 Advanced Player Trading System",
+    content: `
+      <h4>🤝 Player-to-Player Trading</h4>
+      <ul>
+        <li>Full real-time trading system.</li>
+        <li>Players can send, accept, or reject trade requests instantly.</li>
+        <li>Prevents sending multiple requests simultaneously.</li>
+      </ul>
+      <h4>🔐 Secure Trade Validation</h4>
+      <ul>
+        <li>Server-side validation ensures items exist and prevents duplication.</li>
+        <li>Unique Trading IDs assigned during the process.</li>
+        <li>Double Confirmation System with a delay timer to prevent scams.</li>
+      </ul>
+      <h4>📦 Inventory & Slot System</h4>
+      <p>Automatically loads tools from Backpack. Each player has limited trade slots (e.g., 6 slots).</p>
+      <h4>🖼️ Item Preview System</h4>
+      <p>Supports both Image Previews and 3D Viewport Previews of the traded items.</p>
+      <h4>🚫 Auto-Cancellation</h4>
+      <p>Trades safely cancel if a player dies, leaves, or rejects the trade midway.</p>
+    `
+  },
+  hatching: {
+    title: "🥚 Full Advanced Pet Hatching System",
+    content: `
+      <h4>🧠 Smart Egg Detection System</h4>
+      <ul>
+        <li>Automatically detects which egg the player is interacting with.</li>
+        <li>Supports multiple eggs across different worlds.</li>
+      </ul>
+      <h4>🎲 Weighted Drop & Luck System</h4>
+      <ul>
+        <li>Custom drop chances for Common, Rare, Epic, Legendary, Mythic, and Secret pets.</li>
+        <li>Built-in Luck multiplier compatible with gamepasses and potions.</li>
+      </ul>
+      <h4>⚡ Auto Hatch & Triple Hatch</h4>
+      <p>Supports continuous automatic hatching and simultaneous triple hatching for monetization.</p>
+      <h4>🎨 Advanced Pet Reveal Animation</h4>
+      <p>High quality reveal sequence with smooth camera movement, visual effects, and rarity-based colors.</p>
+      <h4>🖼️ Pet Display & Inventory</h4>
+      <p>Supports 3D Viewport Models or Images, automatically adding pets to the inventory upon hatching.</p>
+      <h4>🛑 Hatch Validation</h4>
+      <p>Securely verifies currency, distance, and animation states to prevent exploits.</p>
+    `
+  },
+  fighting: {
+    title: "⚔️ Advanced Hitbox System",
+    content: `
+      <h4>⚔️ Custom Server-Side Hitbox Detection</h4>
+      <ul>
+        <li>Accurate combat detection preventing fake hits and exploits.</li>
+        <li>Supports melee weapons like swords, katanas, and daggers.</li>
+      </ul>
+      <h4>🎞️ Animation-Based Combat</h4>
+      <ul>
+        <li>Smoothly blended animations for realistic fighting and attack combos.</li>
+        <li>Animation Preload System ensures instant responsiveness.</li>
+      </ul>
+      <h4>🛡️ Universal Block System</h4>
+      <p>Full blocking/defense mechanic working automatically with every weapon.</p>
+      <h4>🧩 Plug-and-Play Weapon Creation</h4>
+      <p>Easily create new weapons by duplicating a folder and adding animations. No complex scripting required.</p>
+      <h4>⚡ Performance Optimized</h4>
+      <p>No memory leak connections. Built for large multiplayer combat with efficient hit detection.</p>
+    `
+  }
+};
 
-inventory:{
+// Modal Logic
+const modal = document.getElementById("systemModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalBody = document.getElementById("modalBody");
 
-title:"Advanced Roblox Inventory System",
-
-description:`🚀 Advanced Roblox Inventory System
-
-🎒 Smart Inventory Management
-Clean and organized inventory interface
-Scrollable item grid
-Multiple item categories
-Automatic inventory updates
-
-🧠 Object-Oriented Architecture
-Built using OOP
-Scalable code structure
-Easy expansion
-
-⚡ Client-Server Communication
-Uses RemoteEvents
-Real-time sync
-
-🎮 Interactive UI
-Smooth responsive interface
-Highlight effects
-Item selection feedback
-
-💾 DataStore Support
-Persistent inventory saving
-
-🛡️ Secure Server Validation
-Anti exploit protection
-
-🎯 Perfect For
-Simulator Games
-RPG Games
-Adventure Games`
+function openModal(systemKey) {
+  const data = systemsData[systemKey];
+  if(data) {
+    modalTitle.innerHTML = data.title;
+    modalBody.innerHTML = data.content;
+    modal.classList.add("active");
+  }
 }
 
+function closeModal() {
+  modal.classList.remove("active");
 }
 
-function openSystem(system){
+// Close modal when clicking outside the box
+modal.addEventListener("click", function(e) {
+  if(e.target === modal) {
+    closeModal();
+  }
+});
 
-const modal=document.getElementById("systemModal")
-const title=document.getElementById("systemTitle")
-const desc=document.getElementById("systemDescription")
-
-title.innerText=systems[system].title
-desc.innerText=systems[system].description
-
-modal.style.display="flex"
-
+// Scroll Animation Observer
+const observer = new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show")
 }
+})
+},{threshold:0.2})
 
-function closeModal(){
+document.querySelectorAll(".hidden").forEach(el=>{
+observer.observe(el)
+})
 
-document.getElementById("systemModal").style.display="none"
+// Custom Cursor
+const cursor=document.querySelector(".cursor")
 
-}
+document.addEventListener("mousemove",(e)=>{
+cursor.style.left=e.clientX+"px"
+cursor.style.top=e.clientY+"px"
+})
 
 </script>
 
