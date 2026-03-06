@@ -1,64 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Portfolio</title>
+<title>Hero | Roblox Developer</title>
 
 <style>
 
-body{
+/* GLOBAL */
+
+*{
+box-sizing:border-box;
 margin:0;
+padding:0;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
 font-family:Arial;
-background:#0b0b0b;
+background:#020617;
 color:white;
 overflow-x:hidden;
+}
+
+/* LOADER */
+
+#loader{
+position:fixed;
+width:100%;
+height:100vh;
+background:#020617;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:32px;
+color:#38bdf8;
+z-index:9999;
+animation:fadeOut 1s ease 2.5s forwards;
+}
+
+@keyframes fadeOut{
+to{
+opacity:0;
+visibility:hidden;
+}
+}
+
+/* BACKGROUND */
+
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+background:radial-gradient(circle,#38bdf822 1px,transparent 1px);
+background-size:40px 40px;
+animation:bgMove 40s linear infinite;
+z-index:-1;
+}
+
+@keyframes bgMove{
+0%{transform:translate(0,0);}
+100%{transform:translate(-300px,-300px);}
+}
+
+/* MOUSE GLOW */
+
+.cursor{
+position:fixed;
+width:75px;
+height:75px;
+background:radial-gradient(circle,#38bdf844 0%,transparent 70%);
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:0;
+border-radius:50%;
 }
 
 /* HEADER */
 
 header{
-height:100vh;
 display:flex;
-justify-content:center;
+justify-content:space-between;
 align-items:center;
-flex-direction:column;
+padding:20px 10%;
+background:#020617;
+position:sticky;
+top:0;
+z-index:10;
+border-bottom:1px solid #1e293b;
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+color:#38bdf8;
+}
+
+nav a{
+color:white;
+margin-left:25px;
+text-decoration:none;
+transition:.3s;
+}
+
+nav a:hover{
+color:#38bdf8;
+}
+
+/* HERO */
+
+.hero{
 text-align:center;
+padding:140px 20px;
 }
 
-header h1{
+.hero h1{
 font-size:60px;
-margin:0;
 }
 
-header p{
-color:#aaa;
+.hero span{
+color:#38bdf8;
 }
 
-/* PROJECTS */
+.hero p{
+margin-top:10px;
+color:#94a3b8;
+}
+
+.btn{
+display:inline-block;
+margin-top:25px;
+padding:14px 30px;
+background:#38bdf8;
+color:black;
+border-radius:10px;
+text-decoration:none;
+font-weight:bold;
+box-shadow:0 0 20px #38bdf8;
+transition:.3s;
+}
+
+.btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 35px #38bdf8;
+}
+
+/* SECTIONS */
+
+section{
+padding:80px 10%;
+}
+
+/* PROJECT GRID */
 
 .projects{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:30px;
-padding:60px;
+margin-top:40px;
 }
 
+/* CARD */
+
 .card{
-background:#111;
-border-radius:15px;
+background:#020617;
+border-radius:16px;
 overflow:hidden;
-transition:0.3s;
+border:1px solid #1e293b;
+transition:.4s;
+transform-style:preserve-3d;
 }
 
 .card:hover{
-transform:translateY(-10px);
+transform:rotateX(6deg) rotateY(-6deg) scale(1.05);
+box-shadow:0 20px 40px rgba(0,0,0,.6),
+0 0 30px #38bdf8;
 }
 
 .card img{
 width:100%;
-height:200px;
+height:160px;
 object-fit:cover;
 }
 
@@ -66,35 +193,65 @@ object-fit:cover;
 padding:20px;
 }
 
+.card h3{
+color:#38bdf8;
+margin-bottom:8px;
+}
+
+.card p{
+color:#94a3b8;
+}
+
+/* BUTTONS */
+
 .buttons{
 display:flex;
 gap:10px;
-margin-top:10px;
+margin-top:15px;
 }
 
-button{
+.card button{
+padding:10px 20px;
 border:none;
-padding:10px 15px;
 border-radius:8px;
 cursor:pointer;
+font-weight:bold;
+transition:.3s;
 }
 
 .view{
-background:#444;
-color:white;
+background:#38bdf8;
+}
+
+.view:hover{
+box-shadow:0 0 20px #38bdf8;
 }
 
 .test{
-background:#00ff99;
-color:black;
+background:#22c55e;
+color:white;
+box-shadow:0 0 10px #22c55e;
 }
 
-/* ANIMATION */
+.test:hover{
+box-shadow:0 0 25px #22c55e;
+transform:scale(1.1);
+}
+
+.coming{
+background:#1e293b;
+color:#94a3b8;
+cursor:not-allowed;
+padding:10px 20px;
+border-radius:8px;
+}
+
+/* SCROLL */
 
 .hidden{
 opacity:0;
-transform:translateY(40px);
-transition:1s;
+transform:translateY(80px);
+transition:all 1s ease;
 }
 
 .show{
@@ -102,16 +259,14 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* CURSOR */
+/* FOOTER */
 
-.cursor{
-position:fixed;
-width:20px;
-height:20px;
-border:2px solid white;
-border-radius:50%;
-pointer-events:none;
-transform:translate(-50%,-50%);
+footer{
+text-align:center;
+padding:40px;
+background:#020617;
+color:#94a3b8;
+border-top:1px solid #1e293b;
 }
 
 </style>
@@ -119,77 +274,174 @@ transform:translate(-50%,-50%);
 
 <body>
 
+<div id="loader">Loading Portfolio...</div>
 <div class="cursor"></div>
 
 <header>
-<h1>My Roblox Systems</h1>
-<p>Game Systems I Created</p>
+
+<div class="logo">HeroDev</div>
+
+<nav>
+<a href="#about">About</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</nav>
+
 </header>
 
-<section class="projects">
+<section class="hero hidden">
+
+<h1>Hello I'm <span>Hero</span></h1>
+<p>Roblox Developer | Lua Scripter</p>
+<a class="btn" href="#projects">See My Work</a>
+
+</section>
+
+<section id="about" class="hidden">
+
+<h2>About Me</h2>
+
+<p>
+Roblox developer specialized in Lua scripting,
+advanced game systems and gameplay mechanics.
+</p>
+
+</section>
+
+<section id="projects" class="hidden">
+
+<h2>Projects</h2>
+
+<div class="projects">
 
 <!-- Hatching -->
-<div class="card hidden">
+<div class="card">
 <img src="https://picsum.photos/400/200?2">
 <div class="card-content">
 <h3>Hatching Egg System + UI</h3>
 <p>Pet hatch system.</p>
 <div class="buttons">
-<button class="view">View</button>
-<button class="test" onclick="openGame('https://www.roblox.com/games/134109808658327/HatchingPets')">Test</button>
+<button class="view" onclick="viewSystem()">View</button>
+<button class="test" onclick="joinGame('https://www.roblox.com/games/134109808658327/HatchingPets')">Test</button>
 </div>
 </div>
 </div>
 
 <!-- Spin -->
-<div class="card hidden">
+<div class="card">
 <img src="https://picsum.photos/400/200?3">
 <div class="card-content">
 <h3>Spin Wheel + UI</h3>
 <p>Reward wheel system.</p>
 <div class="buttons">
-<button class="view">View</button>
-<button class="test" onclick="openGame('https://www.roblox.com/games/130744078216219/SpienWheel')">Test</button>
+<button class="view" onclick="viewSystem()">View</button>
+<button class="test" onclick="joinGame('https://www.roblox.com/games/130744078216219/SpienWheel')">Test</button>
 </div>
 </div>
 </div>
 
 <!-- Click Simulator -->
-<div class="card hidden">
+<div class="card">
 <img src="https://picsum.photos/400/200?4">
 <div class="card-content">
 <h3>Click Simulator</h3>
 <p>Simulator gameplay system.</p>
 <div class="buttons">
-<button class="view">View</button>
-<button class="test" onclick="openGame('https://www.roblox.com/games/102709726664311/ClickSemlutor-RebirthSystem')">Test</button>
+<button class="view" onclick="viewSystem()">View</button>
+<button class="test" onclick="joinGame('https://www.roblox.com/games/102709726664311/ClickSemlutor-RebirthSystem')">Test</button>
 </div>
 </div>
 </div>
 
 <!-- Trading -->
-<div class="card hidden">
+<div class="card">
 <img src="https://picsum.photos/400/200?5">
 <div class="card-content">
 <h3>Trading System</h3>
-<p>Player trading system.</p>
+<p>Secure player trading UI.</p>
 <div class="buttons">
-<button class="view">View</button>
-<button class="test" onclick="openGame('https://www.roblox.com')">Test</button>
+<button class="view" onclick="viewSystem()">View</button>
+<button class="test" onclick="joinGame('https://www.roblox.com/games/132175922351222/TradeSystem')">Test</button>
 </div>
 </div>
+</div>
+
+<!-- Fighting -->
+<div class="card">
+<img src="https://picsum.photos/400/200?6">
+<div class="card-content">
+<h3>Full Fighting System</h3>
+<p>Combat system for weapons.</p>
+<div class="buttons">
+<button class="view" onclick="viewSystem()">View</button>
+<button class="test" onclick="joinGame('https://www.roblox.com/games/114021472064448/Stamina-and-Sprint-System')">Test</button>
+</div>
+</div>
+</div>
+
+<!-- Stamina -->
+<div class="card">
+<img src="https://picsum.photos/400/200?8">
+<div class="card-content">
+<h3>Stamina + Dash + Ability</h3>
+<p>Advanced movement mechanics.</p>
+<div class="buttons">
+<button class="view" onclick="viewSystem()">View</button>
+<button class="test" onclick="joinGame('https://www.roblox.com/games/114021472064448/Stamina-and-Sprint-System')">Test</button>
+</div>
+</div>
+</div>
+
+<!-- Inventory -->
+<div class="card">
+<img src="https://picsum.photos/400/200?11">
+<div class="card-content">
+<h3>Full OOP Inventory System</h3>
+<p>Advanced object oriented inventory system.</p>
+<div class="buttons">
+<button class="view" onclick="viewSystem()">View</button>
+<button class="test" onclick="joinGame('https://www.roblox.com/games/72059232064944/InventorySystem-Armor')">Test</button>
+</div>
+</div>
+</div>
+
+<!-- Secret -->
+<div class="card">
+<img src="https://picsum.photos/400/200?10">
+<div class="card-content">
+<h3>Secret Map Project</h3>
+<p>Huge map project.</p>
+<button class="coming">Coming Soon</button>
+</div>
+</div>
+
 </div>
 
 </section>
 
+<section id="contact" class="hidden">
+
+<h2>Contact</h2>
+
+<p>Discord: hero_dev</p>
+<p>Email: hero@example.com</p>
+
+</section>
+
+<footer>
+
+<p>© 2026 Hero Roblox Developer</p>
+
+</footer>
+
 <script>
 
-window.addEventListener("load",()=>{
-window.scrollTo(0,0)
-})
-
-function openGame(url){
+function joinGame(url){
 window.open(url,"_blank")
+}
+
+function viewSystem(){
+window.open("https://youtube.com","_blank")
 }
 
 const observer = new IntersectionObserver((entries)=>{
