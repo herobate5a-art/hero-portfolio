@@ -69,19 +69,6 @@ z-index:-1;
 100%{transform:translate(-300px,-300px);}
 }
 
-/* MOUSE GLOW */
-
-.cursor{
-position:fixed;
-width:75px;
-height:75px;
-background:radial-gradient(circle,#38bdf844 0%,transparent 70%);
-pointer-events:none;
-transform:translate(-50%,-50%);
-z-index:0;
-border-radius:50%;
-}
-
 /* HEADER */
 
 header{
@@ -148,7 +135,6 @@ transition:.3s;
 
 .btn:hover{
 transform:scale(1.1);
-box-shadow:0 0 35px #38bdf8;
 }
 
 /* SECTIONS */
@@ -174,13 +160,11 @@ border-radius:16px;
 overflow:hidden;
 border:1px solid #1e293b;
 transition:.4s;
-transform-style:preserve-3d;
 }
 
 .card:hover{
-transform:rotateX(6deg) rotateY(-6deg) scale(1.05);
-box-shadow:0 20px 40px rgba(0,0,0,.6),
-0 0 30px #38bdf8;
+transform:scale(1.05);
+box-shadow:0 0 30px #38bdf8;
 }
 
 .card img{
@@ -202,8 +186,6 @@ margin-bottom:8px;
 color:#94a3b8;
 }
 
-/* BUTTONS */
-
 .buttons{
 display:flex;
 gap:10px;
@@ -216,57 +198,88 @@ border:none;
 border-radius:8px;
 cursor:pointer;
 font-weight:bold;
-transition:.3s;
 }
 
 .view{
 background:#38bdf8;
 }
 
-.view:hover{
-box-shadow:0 0 20px #38bdf8;
-}
-
 .test{
 background:#22c55e;
 color:white;
-box-shadow:0 0 10px #22c55e;
-}
-
-.test:hover{
-box-shadow:0 0 25px #22c55e;
-transform:scale(1.1);
 }
 
 .coming{
 background:#1e293b;
 color:#94a3b8;
 cursor:not-allowed;
-padding:10px 20px;
-border-radius:8px;
 }
 
-/* SCROLL */
+/* MODAL FRAME */
 
-.hidden{
+#systemModal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.7);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:1000;
+}
+
+.modal-content{
+width:70%;
+max-width:900px;
+max-height:80vh;
+overflow-y:auto;
+background:#020617;
+border:1px solid #1e293b;
+border-radius:15px;
+padding:30px;
+box-shadow:0 0 40px #38bdf8;
+animation:modalOpen .4s ease;
+}
+
+@keyframes modalOpen{
+from{
+transform:scale(.8);
 opacity:0;
-transform:translateY(80px);
-transition:all 1s ease;
 }
-
-.show{
+to{
+transform:scale(1);
 opacity:1;
-transform:translateY(0);
+}
 }
 
-/* FOOTER */
+.modal-content h2{
+color:#38bdf8;
+margin-bottom:15px;
+}
+
+.modal-content p{
+color:#94a3b8;
+line-height:1.6;
+white-space:pre-line;
+}
+
+.close-btn{
+margin-top:20px;
+padding:10px 25px;
+background:#ef4444;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
 
 footer{
 text-align:center;
 padding:40px;
-background:#020617;
-color:#94a3b8;
 border-top:1px solid #1e293b;
+color:#94a3b8;
 }
 
 </style>
@@ -275,7 +288,6 @@ border-top:1px solid #1e293b;
 <body>
 
 <div id="loader">Loading Portfolio...</div>
-<div class="cursor"></div>
 
 <header>
 
@@ -289,129 +301,32 @@ border-top:1px solid #1e293b;
 
 </header>
 
-<section class="hero hidden">
+<section class="hero">
 
 <h1>Hello I'm <span>Hero</span></h1>
 <p>Roblox Developer | Lua Scripter</p>
+
 <a class="btn" href="#projects">See My Work</a>
 
 </section>
 
-<section id="about" class="hidden">
-
-<h2>About Me</h2>
-
-<p>
-Roblox developer specialized in Lua scripting,
-advanced game systems and gameplay mechanics.
-</p>
-
-</section>
-
-<section id="projects" class="hidden">
+<section id="projects">
 
 <h2>Projects</h2>
 
 <div class="projects">
 
-<!-- Hatching -->
-<div class="card">
-<img src="https://picsum.photos/400/200?2">
-<div class="card-content">
-<h3>Hatching Egg System + UI</h3>
-<p>Pet hatch system.</p>
-<div class="buttons">
-<button class="view" onclick="viewSystem()">View</button>
-<button class="test" onclick="joinGame('https://www.roblox.com/games/134109808658327/HatchingPets')">Test</button>
-</div>
-</div>
-</div>
-
-<!-- Spin -->
-<div class="card">
-<img src="https://picsum.photos/400/200?3">
-<div class="card-content">
-<h3>Spin Wheel + UI</h3>
-<p>Reward wheel system.</p>
-<div class="buttons">
-<button class="view" onclick="viewSystem()">View</button>
-<button class="test" onclick="joinGame('https://www.roblox.com/games/130744078216219/SpienWheel')">Test</button>
-</div>
-</div>
-</div>
-
-<!-- Click Simulator -->
-<div class="card">
-<img src="https://picsum.photos/400/200?4">
-<div class="card-content">
-<h3>Click Simulator</h3>
-<p>Simulator gameplay system.</p>
-<div class="buttons">
-<button class="view" onclick="viewSystem()">View</button>
-<button class="test" onclick="joinGame('https://www.roblox.com/games/102709726664311/ClickSemlutor-RebirthSystem')">Test</button>
-</div>
-</div>
-</div>
-
-<!-- Trading -->
-<div class="card">
-<img src="https://picsum.photos/400/200?5">
-<div class="card-content">
-<h3>Trading System</h3>
-<p>Secure player trading UI.</p>
-<div class="buttons">
-<button class="view" onclick="viewSystem()">View</button>
-<button class="test" onclick="joinGame('https://www.roblox.com/games/132175922351222/TradeSystem')">Test</button>
-</div>
-</div>
-</div>
-
-<!-- Fighting -->
-<div class="card">
-<img src="https://picsum.photos/400/200?6">
-<div class="card-content">
-<h3>Full Fighting System</h3>
-<p>Combat system for weapons.</p>
-<div class="buttons">
-<button class="view" onclick="viewSystem()">View</button>
-<button class="test" onclick="joinGame('https://www.roblox.com/games/114021472064448/Stamina-and-Sprint-System')">Test</button>
-</div>
-</div>
-</div>
-
-<!-- Stamina -->
-<div class="card">
-<img src="https://picsum.photos/400/200?8">
-<div class="card-content">
-<h3>Stamina + Dash + Ability</h3>
-<p>Advanced movement mechanics.</p>
-<div class="buttons">
-<button class="view" onclick="viewSystem()">View</button>
-<button class="test" onclick="joinGame('https://www.roblox.com/games/114021472064448/Stamina-and-Sprint-System')">Test</button>
-</div>
-</div>
-</div>
-
-<!-- Inventory -->
 <div class="card">
 <img src="https://picsum.photos/400/200?11">
 <div class="card-content">
-<h3>Full OOP Inventory System</h3>
-<p>Advanced object oriented inventory system.</p>
+<h3>Inventory System</h3>
+<p>Advanced inventory system.</p>
+
 <div class="buttons">
-<button class="view" onclick="viewSystem()">View</button>
+<button class="view" onclick="openSystem('inventory')">View</button>
 <button class="test" onclick="joinGame('https://www.roblox.com/games/72059232064944/InventorySystem-Armor')">Test</button>
 </div>
-</div>
-</div>
 
-<!-- Secret -->
-<div class="card">
-<img src="https://picsum.photos/400/200?10">
-<div class="card-content">
-<h3>Secret Map Project</h3>
-<p>Huge map project.</p>
-<button class="coming">Coming Soon</button>
 </div>
 </div>
 
@@ -419,14 +334,21 @@ advanced game systems and gameplay mechanics.
 
 </section>
 
-<section id="contact" class="hidden">
+<!-- MODAL -->
 
-<h2>Contact</h2>
+<div id="systemModal">
 
-<p>Discord: hero_dev</p>
-<p>Email: hero@example.com</p>
+<div class="modal-content">
 
-</section>
+<h2 id="systemTitle"></h2>
+
+<p id="systemDescription"></p>
+
+<button class="close-btn" onclick="closeModal()">Close</button>
+
+</div>
+
+</div>
 
 <footer>
 
@@ -440,28 +362,66 @@ function joinGame(url){
 window.open(url,"_blank")
 }
 
-function viewSystem(){
-window.open("https://youtube.com","_blank")
+const systems = {
+
+inventory:{
+
+title:"Advanced Roblox Inventory System",
+
+description:`🚀 Advanced Roblox Inventory System
+
+🎒 Smart Inventory Management
+Clean and organized inventory interface
+Scrollable item grid
+Multiple item categories
+Automatic inventory updates
+
+🧠 Object-Oriented Architecture
+Built using OOP
+Scalable code structure
+Easy expansion
+
+⚡ Client-Server Communication
+Uses RemoteEvents
+Real-time sync
+
+🎮 Interactive UI
+Smooth responsive interface
+Highlight effects
+Item selection feedback
+
+💾 DataStore Support
+Persistent inventory saving
+
+🛡️ Secure Server Validation
+Anti exploit protection
+
+🎯 Perfect For
+Simulator Games
+RPG Games
+Adventure Games`
 }
 
-const observer = new IntersectionObserver((entries)=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("show")
 }
-})
-},{threshold:0.2})
 
-document.querySelectorAll(".hidden").forEach(el=>{
-observer.observe(el)
-})
+function openSystem(system){
 
-const cursor=document.querySelector(".cursor")
+const modal=document.getElementById("systemModal")
+const title=document.getElementById("systemTitle")
+const desc=document.getElementById("systemDescription")
 
-document.addEventListener("mousemove",(e)=>{
-cursor.style.left=e.clientX+"px"
-cursor.style.top=e.clientY+"px"
-})
+title.innerText=systems[system].title
+desc.innerText=systems[system].description
+
+modal.style.display="flex"
+
+}
+
+function closeModal(){
+
+document.getElementById("systemModal").style.display="none"
+
+}
 
 </script>
 
