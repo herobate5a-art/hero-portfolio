@@ -460,22 +460,142 @@
             color: #38bdf8;
         }
 
-        /* CONTACT */
-        .contact-info {
+        /* FEEDBACK SECTION */
+        .feedback-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .feedback-form-box, .feedback-list-box {
             background: #0f172a;
             padding: 30px;
-            border-radius: 15px;
+            border-radius: 16px;
             border: 1px solid #1e293b;
-            margin-top: 20px;
+            flex: 1;
+            min-width: 300px;
         }
 
-        .contact-info p {
-            margin: 10px 0;
-            font-size: 1.1rem;
-        }
-
-        .contact-info strong {
+        .feedback-form-box h3, .feedback-list-box h3 {
             color: #38bdf8;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .rating-summary {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .rating-summary .score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #f8fafc;
+        }
+
+        .rating-summary .stars-display {
+            color: #fbbf24;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .rating-summary .total-reviews {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: #020617;
+            border: 1px solid #1e293b;
+            color: white;
+            border-radius: 8px;
+            font-family: inherit;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 10px #38bdf833;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .star-rating-input {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .star-rating-input input {
+            display: none;
+        }
+
+        .star-rating-input label {
+            font-size: 2rem;
+            color: #1e293b;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .star-rating-input label:hover,
+        .star-rating-input label:hover ~ label,
+        .star-rating-input input:checked ~ label {
+            color: #fbbf24;
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+        }
+
+        .reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .review-card {
+            background: #020617;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #1e293b;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .reviewer-name {
+            font-weight: bold;
+            color: #f8fafc;
+        }
+
+        .review-stars {
+            color: #fbbf24;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .review-text {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         /* SCROLL REVEAL */
@@ -509,6 +629,7 @@
         <nav>
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
+            <a href="#feedback">Feedback</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
@@ -653,6 +774,69 @@
                 </div>
             </div>
 
+        </div>
+    </section>
+
+    <section id="feedback" class="hidden">
+        <h2>Client Feedback</h2>
+        <div class="feedback-container">
+            <div class="feedback-form-box">
+                <h3>Leave a Review</h3>
+                <form id="reviewForm" onsubmit="event.preventDefault(); alert('Review submitted successfully!');">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="star-rating-input">
+                        <input type="radio" id="star5" name="rating" value="5" required>
+                        <label for="star5" title="5 stars">★</label>
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4" title="4 stars">★</label>
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3" title="3 stars">★</label>
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2" title="2 stars">★</label>
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1" title="1 star">★</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Write your feedback..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 0;">Submit Review</button>
+                </form>
+            </div>
+
+            <div class="feedback-list-box">
+                <h3>Recent Reviews</h3>
+                <div class="rating-summary">
+                    <div class="score">4.9</div>
+                    <div>
+                        <div class="stars-display">★★★★★</div>
+                        <div class="total-reviews">Based on 12 reviews</div>
+                    </div>
+                </div>
+
+                <div class="reviews-list">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <span class="reviewer-name">Mr Cody</span>
+                            <span class="review-stars">★★★★★</span>
+                        </div>
+                        <div class="review-text">
+                            "Hero is an exceptional scripter! He built a flawless Camel physics system for me with incredibly smooth animations. Highly recommended for complex game mechanics."
+                        </div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <span class="reviewer-name">Anonymous Studio</span>
+                            <span class="review-stars">★★★★★</span>
+                        </div>
+                        <div class="review-text">
+                            "Delivered an advanced inventory system exactly as requested. Professional architecture, exploit-secure, and easy to scale. Will definitely hire again."
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
