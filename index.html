@@ -711,8 +711,7 @@
                     </div>
                     <div class="g_id_signin" data-type="standard"></div>
                 </div>
-
-                <div id="user-info" style="display: none; align-items: center; gap: 10px; margin-bottom: 20px; background: #020617; padding: 10px; border-radius: 8px; border: 1px solid #1e293b;">
+<div id="user-info" style="display: none; align-items: center; gap: 10px; margin-bottom: 20px; background: #020617; padding: 10px; border-radius: 8px; border: 1px solid #1e293b;">
                     <img id="user-photo" src="" style="width: 32px; border-radius: 50%;">
                     <span id="user-name" style="font-weight: bold; color: #38bdf8;"></span>
                 </div>
@@ -790,6 +789,14 @@
         // --- GOOGLE AUTH LOGIC ---
         let currentUser = null;
 
+        // دالة لعرض بيانات المستخدم في الصفحة
+        function showUserUI(name, photo) {
+            document.getElementById('auth-container').style.display = 'none';
+            document.getElementById('user-info').style.display = 'flex';
+            document.getElementById('user-name').innerText = name;
+            document.getElementById('user-photo').src = photo;
+        }
+
         function handleCredentialResponse(response) {
             const payload = JSON.parse(atob(response.credential.split('.')[1]));
             currentUser = {
@@ -797,11 +804,24 @@
                 photo: payload.picture
             };
             
-            document.getElementById('auth-container').style.display = 'none';
-            document.getElementById('user-info').style.display = 'flex';
-            document.getElementById('user-name').innerText = currentUser.name;
-            document.getElementById('user-photo').src = currentUser.photo;
+            // التعديل الجديد: حفظ البيانات في المتصفح عشان يفتكرك
+            localStorage.setItem('hero_user_name', currentUser.name);
+            localStorage.setItem('hero_user_photo', currentUser.photo);
+            localStorage.setItem('hero_is_logged', 'true');
+
+            showUserUI(currentUser.name, currentUser.photo);
         }
+
+        // التعديل الجديد: تشيك عند الريفريش
+        window.onload = function() {
+            if (localStorage.getItem('hero_is_logged') === 'true') {
+                currentUser = {
+                    name: localStorage.getItem('hero_user_name'),
+                    photo: localStorage.getItem('hero_user_photo')
+                };
+                showUserUI(currentUser.name, currentUser.photo);
+            }
+        };
 
         // --- SUBMIT REVIEW TO FIREBASE ---
         const reviewForm = document.getElementById('reviewForm');
