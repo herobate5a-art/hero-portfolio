@@ -852,15 +852,11 @@
         });
 
         // --- REAL-TIME REVIEWS UPDATE ---
-   db.collection("reviews").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+        db.collection("reviews").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
             const list = document.getElementById('reviewsList');
-            list.innerHTML = ""; 
+            list.innerHTML = "";
             let totalRating = 0;
             let count = 0;
-
-            // إخفاء الـ Loader أول ما الداتا تبدأ توصل
-            const loader = document.getElementById('loader');
-            if(loader) loader.style.display = 'none';
 
             snapshot.forEach((doc) => {
                 const data = doc.data();
@@ -873,7 +869,7 @@
                     <div class="review-card">
                         <div class="review-header">
                             <div class="reviewer-info">
-                                <img src="${data.photo || 'https://via.placeholder.com/32'}" alt="${data.name}">
+                                <img src="${data.photo}" alt="${data.name}">
                                 <span class="reviewer-name">${data.name}</span>
                             </div>
                             <span class="review-stars">${stars}</span>
@@ -886,14 +882,11 @@
             if (count > 0) {
                 const avg = (totalRating / count).toFixed(1);
                 document.getElementById('avg-score').innerText = avg;
-                document.getElementById('avg-stars').innerText = "★".repeat(Math.round(avg)) + "☆".repeat(5 - Math.round(avg));
+                document.getElementById('avg-stars').innerText = "★".repeat(Math.round(avg));
                 document.getElementById('review-count').innerText = `Based on ${count} reviews`;
             } else {
                 document.getElementById('review-count').innerText = "No reviews yet.";
             }
-        }, (error) => {
-            console.error("Firebase Error: ", error);
-            if(document.getElementById('loader')) document.getElementById('loader').style.display = 'none';
         });
 
         // --- YOUR ORIGINAL SCRIPTS ---
