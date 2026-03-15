@@ -775,13 +775,15 @@
     <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
     <script>
         // --- FIREBASE CONFIGURATION ---
+        // --- FIREBASE CONFIGURATION ---
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID",
-            appId: "YOUR_APP_ID"
+            apiKey: "AIzaSyA9rjaTxTY5mBPg1VDrjFkNV7yv78nqCeo",
+            authDomain: "hero-portfolio-1c64b.firebaseapp.com",
+            projectId: "hero-portfolio-1c64b",
+            storageBucket: "hero-portfolio-1c64b.firebasestorage.app",
+            messagingSenderId: "442956210324",
+            appId: "1:442956210324:web:b43e09be0e06d018831481",
+            measurementId: "G-LDP1QBFRND"
         };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
@@ -790,12 +792,26 @@
         let currentUser = null;
 
         // دالة لعرض بيانات المستخدم في الصفحة
-        function showUserUI(name, photo) {
+      function showUserUI(name, photo) {
             document.getElementById('auth-container').style.display = 'none';
             document.getElementById('user-info').style.display = 'flex';
             document.getElementById('user-name').innerText = name;
             document.getElementById('user-photo').src = photo;
+
+            if (window.google && google.accounts && google.accounts.id) {
+                google.accounts.id.cancel(); 
+            }
         }
+
+        window.onload = function() {
+            if (localStorage.getItem('hero_is_logged') === 'true') {
+                currentUser = {
+                    name: localStorage.getItem('hero_user_name'),
+                    photo: localStorage.getItem('hero_user_photo')
+                };
+                showUserUI(currentUser.name, currentUser.photo);
+            }
+        };
 
         function handleCredentialResponse(response) {
             const payload = JSON.parse(atob(response.credential.split('.')[1]));
