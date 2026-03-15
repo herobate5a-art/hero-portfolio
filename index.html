@@ -499,9 +499,515 @@
         }
 
         .rating-summary .stars-display {
-            color: #fbbf24;
+         <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero | Roblox Developer</title>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    
+    <style>
+        /* GLOBAL */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #020617;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38bdf8;
+        }
+
+        /* LOADER */
+        #loader {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: #020617;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            color: #38bdf8;
+            z-index: 9999;
+            animation: fadeOut 1s ease 2.5s forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* BACKGROUND ANIMATION */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, #38bdf822 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: bgMove 40s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes bgMove {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-300px, -300px);
+            }
+        }
+
+        /* MOUSE GLOW */
+        .cursor {
+            position: fixed;
+            width: 75px;
+            height: 75px;
+            background: radial-gradient(circle, #38bdf844 0%, transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            border-radius: 50%;
+        }
+
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #38bdf8;
+            text-shadow: 0 0 10px #38bdf855;
+        }
+
+        nav a {
+            color: white;
+            margin-left: 25px;
+            text-decoration: none;
+            transition: .3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding: 140px 20px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        .hero span {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            color: #94a3b8;
             font-size: 1.2rem;
-            letter-spacing: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 35px;
+            background: #38bdf8;
+            color: black;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 0 20px #38bdf866;
+            transition: .3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px #38bdf8aa;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 80px 10%;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: #38bdf8;
+        }
+
+        /* PROJECTS GRID */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* CARDS */
+        .card {
+            background: #0f172a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #1e293b;
+            transition: .4s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #38bdf8;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.2);
+        }
+
+        /* NEW CSS-BASED PROFESSIONAL 3D IMAGE REPLACEMENT */
+        .card-image-placeholder {
+            width: 100%;
+            height: 180px;
+            background: #020617;
+            background-image:
+                linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid #1e293b;
+            position: relative;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .card-image-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: #38bdf8;
+            border-radius: 50%;
+            filter: blur(50px);
+            opacity: 0.3;
+        }
+
+        .pro-logo-text {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            position: relative;
+            transform: rotateX(15deg) rotateY(-15deg) rotateZ(-3deg);
+            text-shadow:
+                0 1px 0 #0ea5e9,
+                0 2px 0 #0284c7,
+                0 3px 0 #0369a1,
+                0 4px 0 #075985,
+                0 5px 0 #0c4a6e,
+                0 6px 1px rgba(0, 0, 0, .1),
+                0 0 5px rgba(56, 189, 248, .1),
+                0 1px 3px rgba(0, 0, 0, .3),
+                0 3px 5px rgba(0, 0, 0, .2),
+                0 5px 10px rgba(0, 0, 0, .25),
+                0 10px 10px rgba(0, 0, 0, .2),
+                0 20px 20px rgba(0, 0, 0, .15),
+                0 0 15px #38bdf8;
+            display: inline-block;
+            transform-origin: center center;
+        }
+
+        .card-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card h3 {
+            color: #38bdf8;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .card button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .view {
+            background: #1e293b;
+            color: #38bdf8;
+            border: 1px solid #38bdf844;
+        }
+
+        .view:hover {
+            background: #38bdf8;
+            color: black;
+        }
+
+        .test {
+            background: #22c55e;
+            color: white;
+        }
+
+        .test:hover {
+            box-shadow: 0 0 15px #22c55e;
+            transform: scale(1.03);
+        }
+
+        .coming {
+            background: #1e293b;
+            color: #64748b;
+            cursor: not-allowed;
+            width: 100%;
+        }
+
+        /* MODAL STYLES */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-container {
+            background: #0f172a;
+            border: 1px solid #38bdf8;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 85vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            animation: modalScale 0.3s ease-out;
+        }
+
+        @keyframes modalScale {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            padding: 25px 35px;
+            border-bottom: 1px solid #1e293b;
+            padding-right: 60px;
+        }
+
+        .modal-header h2 {
+            font-size: 1.8rem;
+            margin: 0;
+            color: #38bdf8;
+        }
+
+        .modal-header h2::after {
+            display: none;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #1e293b;
+            color: #ef4444;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1010;
+            transition: 0.2s;
+        }
+
+        .close-btn:hover {
+            background: #ef4444;
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-content-scroll {
+            padding: 35px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .modal-body h3 {
+            color: #f8fafc;
+            margin: 25px 0 10px 0;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-body p {
+            color: #94a3b8;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .modal-body ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .modal-body li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+
+        .modal-body li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #38bdf8;
+        }
+
+        /* FEEDBACK SECTION */
+        .feedback-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .feedback-form-box, .feedback-list-box {
+            background: #0f172a;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #1e293b;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .feedback-form-box h3, .feedback-list-box h3 {
+            color: #38bdf8;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .rating-summary {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .rating-summary .score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #f8fafc;
+        }
+
+        .stars-display {
+           color: #fbbf24;
+           font-size: 1.2rem;
+           letter-spacing: 2px;
         }
 
         .rating-summary .total-reviews {
@@ -565,6 +1071,9 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 5px;
         }
 
         .review-card {
@@ -572,7 +1081,20 @@
             padding: 20px;
             border-radius: 10px;
             border: 1px solid #1e293b;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
         }
+
+        .reviewer-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 1px solid #38bdf8;
+            object-fit: cover;
+        }
+
+        .review-body { flex: 1; }
 
         .review-header {
             display: flex;
@@ -615,6 +1137,24 @@
             padding: 40px;
             color: #64748b;
             border-top: 1px solid #1e293b;
+        }
+
+        /* GOOGLE LOGIN STYLE */
+        #google-login-btn {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .user-info-preview {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #1e293b;
+            border-radius: 8px;
+            display: none;
         }
     </style>
 </head>
@@ -782,10 +1322,21 @@
         <div class="feedback-container">
             <div class="feedback-form-box">
                 <h3>Leave a Review</h3>
-                <form id="reviewForm" onsubmit="event.preventDefault(); alert('Review submitted successfully!');">
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
+                
+                <div id="google-login-btn">
+                    <div id="g_id_onload"
+                        data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+                        data-callback="handleCredentialResponse">
                     </div>
+                    <div class="g_id_signin" data-type="standard"></div>
+                </div>
+
+                <div class="user-info-preview" id="userInfo">
+                    <img src="" id="userPhoto" class="reviewer-img">
+                    <span id="userName"></span>
+                </div>
+
+                <form id="reviewForm">
                     <div class="star-rating-input">
                         <input type="radio" id="star5" name="rating" value="5" required>
                         <label for="star5" title="5 stars">★</label>
@@ -799,43 +1350,27 @@
                         <label for="star1" title="1 star">★</label>
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Write your feedback..." required></textarea>
+                        <textarea id="reviewMsg" placeholder="Write your feedback..." required></textarea>
                     </div>
-                    <button type="submit" class="btn" style="width: 100%; margin-top: 0;">Submit Review</button>
+
+                    <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY"></div>
+
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 15px;">Submit Review</button>
                 </form>
             </div>
 
             <div class="feedback-list-box">
                 <h3>Recent Reviews</h3>
                 <div class="rating-summary">
-                    <div class="score">4.9</div>
+                    <div class="score" id="avgScore">0.0</div>
                     <div>
                         <div class="stars-display">★★★★★</div>
-                        <div class="total-reviews">Based on 12 reviews</div>
+                        <div class="total-reviews" id="reviewCount">Based on 0 reviews</div>
                     </div>
                 </div>
 
-                <div class="reviews-list">
-                    <div class="review-card">
-                        <div class="review-header">
-                            <span class="reviewer-name">Mr Cody</span>
-                            <span class="review-stars">★★★★★</span>
-                        </div>
-                        <div class="review-text">
-                            "Hero is an exceptional scripter! He built a flawless Camel physics system for me with incredibly smooth animations. Highly recommended for complex game mechanics."
-                        </div>
+                <div class="reviews-list" id="reviewsContainer">
                     </div>
-                    
-                    <div class="review-card">
-                        <div class="review-header">
-                            <span class="reviewer-name">Anonymous Studio</span>
-                            <span class="review-stars">★★★★★</span>
-                        </div>
-                        <div class="review-text">
-                            "Delivered an advanced inventory system exactly as requested. Professional architecture, exploit-secure, and easy to scale. Will definitely hire again."
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -869,6 +1404,21 @@
     <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
 
     <script>
+        // --- FIREBASE CONFIGURATION ---
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Global User State
+        let currentUser = null;
+
         // Sounds
         const cSound = document.getElementById("clickSound");
 
@@ -878,114 +1428,128 @@
             cSound.play();
         }
 
-        // Data Mapping
+        // Google Login Handler
+        function handleCredentialResponse(response) {
+            const responsePayload = parseJwt(response.credential);
+            currentUser = {
+                name: responsePayload.name,
+                photo: responsePayload.picture
+            };
+            
+            document.getElementById('google-login-btn').style.display = 'none';
+            document.getElementById('userInfo').style.display = 'flex';
+            document.getElementById('userName').innerText = currentUser.name;
+            document.getElementById('userPhoto').src = currentUser.photo;
+        }
+
+        function parseJwt(token) {
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            return JSON.parse(window.atob(base64));
+        }
+
+        // Submit Review to Firebase
+        document.getElementById('reviewForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!currentUser) {
+                alert("Please login with Google first!");
+                return;
+            }
+
+            const rating = document.querySelector('input[name="rating"]:checked').value;
+            const message = document.getElementById('reviewMsg').value;
+            const captchaResponse = document.querySelector('[name="cf-turnstile-response"]').value;
+
+            if (!captchaResponse) {
+                alert("Please complete the Captcha check!");
+                return;
+            }
+
+            try {
+                await db.collection("reviews").add({
+                    name: currentUser.name,
+                    photo: currentUser.photo,
+                    rating: parseInt(rating),
+                    text: message,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                alert("Review submitted successfully!");
+                document.getElementById('reviewForm').reset();
+                turnstile.reset();
+            } catch (error) {
+                console.error("Error adding review: ", error);
+            }
+        });
+
+        // Load Reviews from Firebase
+        db.collection("reviews").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+            const container = document.getElementById('reviewsContainer');
+            container.innerHTML = "";
+            let totalRating = 0;
+            let count = snapshot.size;
+
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                totalRating += data.rating;
+                
+                const stars = "★".repeat(data.rating) + "☆".repeat(5 - data.rating);
+                
+                container.innerHTML += `
+                    <div class="review-card">
+                        <img src="${data.photo}" class="reviewer-img">
+                        <div class="review-body">
+                            <div class="review-header">
+                                <span class="reviewer-name">${data.name}</span>
+                                <span class="review-stars">${stars}</span>
+                            </div>
+                            <div class="review-text">${data.text}</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            if (count > 0) {
+                const avg = (totalRating / count).toFixed(1);
+                document.getElementById('avgScore').innerText = avg;
+                document.getElementById('reviewCount').innerText = `Based on ${count} reviews`;
+            }
+        });
+
+        // Data Mapping (Old Logic Maintained)
         const details = {
             camel: {
                 title: "🐫 Full Movement Controlled Animal + Animations",
-                body: `
-                    <h3>🐪 Full Mount Mechanics</h3>
-                    <ul>
-                        <li>Seamless mounting and dismounting system for players.</li>
-                        <li>Custom physics and Collision Groups integration to ensure smooth movement across all terrains.</li>
-                    </ul>
-                    <h3>🎬 Complex Animation States</h3>
-                    <ul>
-                        <li>High-quality custom animations for both the player character and the animal model.</li>
-                        <li>Dynamic animation states: Idle, Walking, Running, and Sitting.</li>
-                        <li>Smooth animation blending for realistic transitions.</li>
-                    </ul>
-                    <h3>🧠 Advanced Script Architecture</h3>
-                    <p>Built with a professional architecture utilizing Server, Client, and Module Scripts for maximum performance and exploit protection.</p>
-                    <h3>🎮 Dynamic Integration</h3>
-                    <p>The player's character scales and synchronizes perfectly with the animal's rig during the ride.</p>
-                `
+                body: `<h3>🐪 Full Mount Mechanics</h3><ul><li>Seamless mounting and dismounting system for players.</li><li>Custom physics and Collision Groups integration to ensure smooth movement across all terrains.</li></ul><h3>🎬 Complex Animation States</h3><ul><li>High-quality custom animations for both the player character and the animal model.</li><li>Dynamic animation states: Idle, Walking, Running, and Sitting.</li><li>Smooth animation blending for realistic transitions.</li></ul><h3>🧠 Advanced Script Architecture</h3><p>Built with a professional architecture utilizing Server, Client, and Module Scripts for maximum performance and exploit protection.</p><h3>🎮 Dynamic Integration</h3><p>The player's character scales and synchronizes perfectly with the animal's rig during the ride.</p>`
             },
             inventory: {
                 title: "🚀 Advanced Roblox Inventory System",
-                body: `
-                    <h3>🎒 Smart Inventory Management</h3>
-                    <ul>
-                        <li>Clean and organized inventory interface</li>
-                        <li>Items displayed inside a scrollable grid layout</li>
-                        <li>Supports multiple item categories (Weapons, Potions, Armor, etc.)</li>
-                    </ul>
-                    <h3>🧠 Object-Oriented Architecture</h3>
-                    <p>Built using OOP for a clean and scalable code structure, making it easy to expand for large projects.</p>
-                    <h3>🛡️ Secure Server Validation</h3>
-                    <p>Important actions are verified on the server to prevent common exploit attempts.</p>
-                `
+                body: `<h3>🎒 Smart Inventory Management</h3><ul><li>Clean and organized inventory interface</li><li>Items displayed inside a scrollable grid layout</li><li>Supports multiple item categories (Weapons, Potions, Armor, etc.)</li></ul><h3>🧠 Object-Oriented Architecture</h3><p>Built using OOP for a clean and scalable code structure, making it easy to expand for large projects.</p><h3>🛡️ Secure Server Validation</h3><p>Important actions are verified on the server to prevent common exploit attempts.</p>`
             },
             spin: {
                 title: "🎡 Advanced Roblox Spin Wheel System",
-                body: `
-                    <h3>🎯 Weighted Reward System</h3>
-                    <ul>
-                        <li>Advanced rarity-based reward system where each item has custom drop chances.</li>
-                        <li>Supports dynamic luck multipliers and GamePass boosts.</li>
-                    </ul>
-                    <h3>🎬 Smooth Spin Animation</h3>
-                    <p>High-quality spinning animation using TweenService with realistic easing and immersive sound effects.</p>
-                `
+                body: `<h3>🎯 Weighted Reward System</h3><ul><li>Advanced rarity-based reward system where each item has custom drop chances.</li><li>Supports dynamic luck multipliers and GamePass boosts.</li></ul><h3>🎬 Smooth Spin Animation</h3><p>High-quality spinning animation using TweenService with realistic easing and immersive sound effects.</p>`
             },
             stamina: {
                 title: "⚡ Advanced Stamina, Sprint & Dash System",
-                body: `
-                    <h3>⚡ Stamina-Based Movement</h3>
-                    <ul>
-                        <li>Integrated stamina system controlling sprinting and special abilities.</li>
-                        <li>Automatic regeneration with customizable delays and rates.</li>
-                    </ul>
-                    <h3>🏃 Smooth Sprint Mechanic</h3>
-                    <p>Professional movement mechanics with state detection and high-performance RunService implementation.</p>
-                `
+                body: `<h3>⚡ Stamina-Based Movement</h3><ul><li>Integrated stamina system controlling sprinting and special abilities.</li><li>Automatic regeneration with customizable delays and rates.</li></ul><h3>🏃 Smooth Sprint Mechanic</h3><p>Professional movement mechanics with state detection and high-performance RunService implementation.</p>`
             },
             clicker: {
                 title: "🖱️ Advanced Click Simulator & Rebirth System",
-                body: `
-                    <h3>🔄 Rebirth Progression System</h3>
-                    <ul>
-                        <li>Exponential rebirth cost scaling to maintain long-term balanced progression.</li>
-                        <li>Persistent data saving for clicks, gems, and multipliers.</li>
-                    </ul>
-                    <h3>🛡️ Anti-Exploit Protection</h3>
-                    <p>Server-side validation for rewards to prevent click reward and rebirth distribution exploits.</p>
-                `
+                body: `<h3>🔄 Rebirth Progression System</h3><ul><li>Exponential rebirth cost scaling to maintain long-term balanced progression.</li><li>Persistent data saving for clicks, gems, and multipliers.</li></ul><h3>🛡️ Anti-Exploit Protection</h3><p>Server-side validation for rewards to prevent click reward and rebirth distribution exploits.</p>`
             },
             trading: {
                 title: "🔄 Advanced Player Trading System",
-                body: `
-                    <h3>🔐 Secure Trade Validation</h3>
-                    <ul>
-                        <li>Unique Trading IDs and server validation to prevent item duplication scams.</li>
-                        <li>Double confirmation system with a safety timer for player security.</li>
-                    </ul>
-                    <h3>🎨 Interactive Interface</h3>
-                    <p>Real-time player list and inventory browser with 3D Viewport previews for items.</p>
-                `
+                body: `<h3>🔐 Secure Trade Validation</h3><ul><li>Unique Trading IDs and server validation to prevent item duplication scams.</li><li>Double confirmation system with a safety timer for player security.</li></ul><h3>🎨 Interactive Interface</h3><p>Real-time player list and inventory browser with 3D Viewport previews for items.</p>`
             },
             hatching: {
                 title: "🥚 Full Advanced Pet Hatching System",
-                body: `
-                    <h3>🎲 Weighted Drop Rate System</h3>
-                    <ul>
-                        <li>Custom drop chances for rarities ranging from Common to Secret.</li>
-                        <li>Compatible with luck potions and server-wide events.</li>
-                    </ul>
-                    <h3>🎨 Advanced Reveal Animation</h3>
-                    <p>High-quality reveal sequence with camera manipulation, VFX, and rarity-themed highlights.</p>
-                `
+                body: `<h3>🎲 Weighted Drop Rate System</h3><ul><li>Custom drop chances for rarities ranging from Common to Secret.</li><li>Compatible with luck potions and server-wide events.</li></ul><h3>🎨 Advanced Reveal Animation</h3><p>High-quality reveal sequence with camera manipulation, VFX, and rarity-themed highlights.</p>`
             },
             hitbox: {
                 title: "⚔️ Advanced Hitbox System",
-                body: `
-                    <h3>⚔️ Custom Server-Side Detection</h3>
-                    <ul>
-                        <li>Accurate combat detection for melee weapons to prevent fake hits and client manipulation.</li>
-                        <li>Universal block system and animation-based attack combos.</li>
-                    </ul>
-                    <h3>⚡ Performance & Security</h3>
-                    <p>Minimal network overhead with efficient hit detection logic and proper memory management.</p>
-                `
+                body: `<h3>⚔️ Custom Server-Side Detection</h3><ul><li>Accurate combat detection for melee weapons to prevent fake hits and client manipulation.</li><li>Universal block system and animation-based attack combos.</li></ul><h3>⚡ Performance & Security</h3><p>Minimal network overhead with efficient hit detection logic and proper memory management.</p>`
             }
         };
 
