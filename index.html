@@ -307,11 +307,11 @@
         color: black;
     }
     .test {
-        background: #22c55e;
+        background: #2563eb; /* UPDATED TO BLUE */
         color: white;
     }
     .test:hover {
-        box-shadow: 0 0 15px #22c55e;
+        box-shadow: 0 0 15px #2563eb;
         transform: scale(1.03);
     }
     .repo-btn {
@@ -599,7 +599,7 @@
         transition: .3s;
         cursor: pointer;
     }
-    .social-btn:hover {
+  .social-btn:hover {
         background: #38bdf8;
         color: black;
         box-shadow: 0 0 15px #38bdf8aa;
@@ -746,7 +746,7 @@
             </div>
             <div class="card-content">
                 <h3>Secret Map</h3>
-                <p>Massive world project under development.</p>
+                <p>Massive world project featuring hyper-realistic environments.</p>
                 <button class="coming">Coming Soon</button>
             </div>
         </div>
@@ -762,7 +762,7 @@
             </div>
             <div class="card-content">
                 <h3>Game Systems Manager</h3>
-                <p>A professional Open-Source Luau module for high-performance game timers, rounds, and reward systems.</p>
+                <p>A high-performance Luau module designed for seamless game lifecycle management.</p>
                 <div class="buttons">
                     <button class="view" onclick="openSystem('gsm')">Read Docs</button>
                     <button class="repo-btn" onclick="window.open('https://github.com/herobate5a-art/Roblox-Timer-System', '_blank')">GitHub Repo</button>
@@ -949,15 +949,42 @@
     function playSound() { cSound.currentTime = 0; cSound.volume = 0.2; cSound.play(); }
 
     const details = {
-        camel: { title: "🐫 Full Movement Controlled Animal + Animations", body: `<h3>🐪 Full Mount Mechanics</h3><ul><li>Seamless mounting and dismounting system for players.</li><li>Custom physics integration.</li></ul><h3>🎬 Complex Animation States</h3><ul><li>Idle, Walking, Running, and Sitting.</li></ul>` },
-        inventory: { title: "🚀 Advanced Roblox Inventory System", body: `<h3>🎒 Smart Inventory Management</h3><ul><li>Clean interface and categories.</li></ul>` },
-        spin: { title: "🎡 Advanced Roblox Spin Wheel System", body: `<h3>🎯 Weighted Reward System</h3><p>Advanced rarity-based rewards with luck multipliers.</p>` },
-        stamina: { title: "⚡ Advanced Stamina, Sprint & Dash System", body: `<h3>⚡ Stamina-Based Movement</h3><p>Professional movement mechanics with state detection.</p>` },
-        clicker: { title: "🖱️ Advanced Click Simulator & Rebirth System", body: `<h3>🔄 Rebirth Progression System</h3><p>Exponential scaling with server validation.</p>` },
-        trading: { title: "🔄 Advanced Player Trading System", body: `<h3>🔐 Secure Trade Validation</h3><p>Unique Trading IDs to prevent item duplication.</p>` },
-        hatching: { title: "🥚 Full Advanced Pet Hatching System", body: `<h3>🎲 Weighted Drop Rate System</h3><p>High-quality reveal sequence with camera manipulation.</p>` },
-        hitbox: { title: "⚔️ Advanced Hitbox System", body: `<h3>⚔️ Custom Server-Side Detection</h3><p>Accurate melee combat detection for fair PvP.</p>` },
-        gsm: { title: "⏳ GameSystemsManager (Open Source)", body: `<h3>⏱️ High-Performance Timer System</h3><p>Open-source Luau module for rounds and rewards.</p>` }
+        camel: { 
+            title: "🐫 Full Movement Controlled Animal + Animations", 
+            body: `<h3>🐪 Full Mount Mechanics</h3><ul><li>Seamless mounting and dismounting system for players.</li><li>Custom physics integration for realistic movement across terrain.</li><li>Smooth camera transition when riding.</li></ul><h3>🎬 Complex Animation States</h3><ul><li>Full suite of custom animations: Idle, Walking, Running, and Sitting.</li><li>Frame-perfect synchronization between player and animal animations.</li></ul>` 
+        },
+        inventory: { 
+            title: "🚀 Advanced Roblox Inventory System", 
+            body: `<h3>🎒 Smart Inventory Management</h3><ul><li>Clean and organized grid layout for items.</li><li>Supports multiple categories: Weapons, Armor, Consumables.</li><li>Automatic real-time updates on item gain or loss.</li></ul><h3>🧠 Object-Oriented Architecture</h3><ul><li>Built with scalable OOP principles for easy expansion.</li><li>Modular design for seamless integration with shops and trading.</li></ul><h3>🛡️ Secure Server Validation</h3><ul><li>All inventory actions are verified on the server to prevent exploits.</li><li>DataStore integration for persistent item saving.</li></ul>` 
+        },
+        spin: { 
+            title: "🎡 Advanced Roblox Spin Wheel System", 
+            body: `<h3>🎯 Weighted Reward System</h3><ul><li>Advanced rarity-based rewards with custom drop chances.</li><li>Dynamic Luck Multiplier system for GamePass boosts.</li></ul><h3>🎨 Dynamic Generation</h3><ul><li>Wheel UI builds automatically based on reward tables.</li><li>Smooth TweenService animations with immersive audio feedback.</li></ul><h3>🛡️ Anti-Exploit Measures</h3><ul><li>Server-authoritative spin results to prevent reward manipulation.</li><li>Daily free spin system with DataStore-backed cooldowns.</li></ul>` 
+        },
+        stamina: { 
+            title: "⚡ Advanced Stamina, Sprint & Dash System", 
+            body: `<h3>⚡ Stamina-Based Movement</h3><ul><li>Dynamic stamina drain for sprinting and dashing.</li><li>Smart regeneration system with configurable delays.</li></ul><h3>🏃 Sprint & Dash Mechanics</h3><ul><li>Toggle or Hold sprint modes with custom FOV effects.</li><li>State detection (Jumping, Falling, Running) to adjust behavior.</li></ul><h3>🎬 Animation Integration</h3><ul><li>Smooth blending between walk and sprint animations based on speed.</li></ul>` 
+        },
+        clicker: { 
+            title: "🖱️ Advanced Click Simulator & Rebirth System", 
+            body: `<h3>🖱️ Clicker Gameplay Loop</h3><ul><li>Highly optimized click progression with anti-spam protection.</li><li>Dynamic multipliers that scale based on player stats.</li></ul><h3>🔄 Rebirth Progression</h3><ul><li>Exponential rebirth cost scaling for long-term engagement.</li><li>Permanent bonuses and gem rewards upon rebirthing.</li></ul><h3>📊 Visual Feedback</h3><ul><li>Animated reward pop-ups and real-time progress bars.</li></ul>` 
+        },
+        trading: { 
+            title: "🔄 Advanced Player Trading System", 
+            body: `<h3>🔐 Secure Trade Validation</h3><ul><li>Double confirmation system with countdown timers to prevent scams.</li><li>Unique Trading IDs to track every item and prevent duplication.</li></ul><h3>🖼️ Item Preview System</h3><ul><li>High-quality 3D Viewport previews for items during trade.</li><li>Real-time inventory synchronization for both players.</li></ul>` 
+        },
+        hatching: { 
+            title: "🥚 Full Advanced Pet Hatching System", 
+            body: `<h3>🎲 Weighted Drop Rates</h3><ul><li>Fully configurable pet rarities: Common to Mythic and Secret.</li><li>Dramatic hatch sequence with camera manipulation and effects.</li></ul><h3>⚡ Auto-Hatch & Multi-Hatch</h3><ul><li>Support for continuous auto-hatching and triple hatching features.</li><li>Inventory integration to automatically store new pets.</li></ul>` 
+        },
+        hitbox: { 
+            title: "⚔️ Advanced Modular Combat System", 
+            body: `<h3>⚔️ Custom Server-Side Hitboxes</h3><ul><li>Accurate melee detection to ensure fair PvP interactions.</li><li>Prevents fake hits and range-based client exploits.</li></ul><h3>🛡️ Universal Blocking & Combos</h3><ul><li>Weapon-agnostic blocking system with high-quality animations.</li><li>Preloaded animation system to eliminate combat lag.</li></ul>` 
+        },
+        gsm: { 
+            title: "⏳ GameSystemsManager (Open Source Library)", 
+            body: `<h3>⏱️ High-Performance Timer System</h3><p>GameSystemsManager (GSM) is a professional Open-Source Luau module designed for high-performance management of game rounds, timers, and automated reward cycles.</p><h3>🧩 Key Features</h3><ul><li>Scalable timer architecture for complex round-based games.</li><li>Frame-independent synchronization across client and server.</li><li>Lightweight and modular, easily integrated into any codebase.</li></ul>` 
+        }
     };
 
     function openSystem(key) {
