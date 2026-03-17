@@ -194,14 +194,13 @@
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.2);
     }
     
-    /* NEW BOOK STYLE FOR LIBRARIES (UPDATED) */
+    /* NEW BOOK STYLE FOR LIBRARIES (UPDATED ALIGNMENT) */
     .book-card {
         background: #0f172a;
         border-radius: 6px 16px 16px 6px;
         overflow: hidden;
         border: 1px solid #1e293b;
         border-left: 15px solid #0284c7; /* Book Spine */
-        /* Removed white line (pages effect) for cleaner script look */
         box-shadow: 5px 5px 15px rgba(0,0,0,0.5); 
         transition: .4s;
         display: flex;
@@ -214,7 +213,7 @@
         box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.2);
     }
 
-    /* NEW CSS-BASED PROFESSIONAL 3D IMAGE REPLACEMENT */
+    /* CSS-BASED PROFESSIONAL 3D IMAGE REPLACEMENT */
     .card-image-placeholder {
         width: 100%;
         height: 180px;
@@ -315,7 +314,6 @@
         box-shadow: 0 0 15px #22c55e;
         transform: scale(1.03);
     }
-    /* NEW REPO BUTTON STYLE */
     .repo-btn {
         background: #2563eb;
         color: white;
@@ -542,7 +540,6 @@
         justify-content: space-between;
         align-items: center;
     }
-    /* USER INFO IN REVIEW */
     .reviewer-info {
         display: flex;
         align-items: center;
@@ -584,12 +581,14 @@
         color: #64748b;
         border-top: 1px solid #1e293b;
     }
-    /* GITHUB BUTTON STYLE */
-    .github-btn {
+    
+    /* SHARED SOCIAL BUTTON STYLE */
+    .social-btn {
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        margin-top: 20px;
+        margin-top: 10px;
+        margin-right: 10px;
         padding: 12px 25px;
         background: #1e293b;
         color: #38bdf8;
@@ -598,13 +597,16 @@
         text-decoration: none;
         font-weight: bold;
         transition: .3s;
+        cursor: pointer;
     }
-    .github-btn:hover {
+    .social-btn:hover {
         background: #38bdf8;
         color: black;
         box-shadow: 0 0 15px #38bdf8aa;
         transform: scale(1.03); 
     }
+    .discord-theme:hover { background: #5865F2; border-color: #5865F2; color: white; }
+    .email-theme:hover { background: #ea4335; border-color: #ea4335; color: white; }
 </style>
 </head>
 <body>
@@ -775,20 +777,18 @@
     <div class="feedback-container">
         <div class="feedback-form-box">
             <h3>Leave a Review</h3>
-            
             <div id="auth-container" style="margin-bottom: 20px;">
                <div id="g_id_onload"
-           data-client_id="442956210324-33rp410gvdv6jkh76071jhfbcn0h3hni.apps.googleusercontent.com"
-             data-callback="handleCredentialResponse"
-             data-auto_prompt="false">
-        </div>
-                <div class="g_id_signin" data-type="standard"></div>
+                    data-client_id="442956210324-33rp410gvdv6jkh76071jhfbcn0h3hni.apps.googleusercontent.com"
+                    data-callback="handleCredentialResponse"
+                    data-auto_prompt="false">
+               </div>
+               <div class="g_id_signin" data-type="standard"></div>
             </div>
-<div id="user-info" style="display: none; align-items: center; gap: 10px; margin-bottom: 20px; background: #020617; padding: 10px; border-radius: 8px; border: 1px solid #1e293b;">
+            <div id="user-info" style="display: none; align-items: center; gap: 10px; margin-bottom: 20px; background: #020617; padding: 10px; border-radius: 8px; border: 1px solid #1e293b;">
                 <img id="user-photo" src="" style="width: 32px; border-radius: 50%;">
                 <span id="user-name" style="font-weight: bold; color: #38bdf8;"></span>
             </div>
-
             <form id="reviewForm">
                 <div class="star-rating-input">
                     <input type="radio" id="star5" name="rating" value="5" required>
@@ -817,23 +817,31 @@
                     <div class="total-reviews" id="review-count">Loading reviews...</div>
                 </div>
             </div>
-            <div class="reviews-list" id="reviewsList">
-                </div>
+            <div class="reviews-list" id="reviewsList"></div>
         </div>
     </div>
 </section>
 <section id="contact" class="hidden">
     <h2>Get In Touch</h2>
     <div class="contact-info">
-        <p><strong>Discord:</strong> heroo__dev</p>
-        <p><strong>Email:</strong> redae1873@gmail.com</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <a href="https://github.com/herobate5a-art" target="_blank" class="social-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub
+            </a>
+            
+            <a href="https://discord.com/users/heroo__dev" target="_blank" class="social-btn discord-theme">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.419-2.157 2.419z"/></svg>
+                Discord
+            </a>
+            
+            <a href="mailto:redae1873@gmail.com" class="social-btn email-theme">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                Email
+            </a>
+        </div>
         
-        <a href="https://github.com/herobate5a-art" target="_blank" class="github-btn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            GitHub: herobate5a-art
-        </a>
-        
-        <p style="margin-top: 15px; font-size: 0.9rem; color: #64748b;">Available for commissions and long-term projects.</p>
+        <p style="margin-top: 25px; font-size: 0.95rem; color: #94a3b8;">Available for commissions and long-term projects.</p>
     </div>
 </section>
 <footer>
@@ -846,14 +854,12 @@
             <h2 id="mTitle">System Details</h2>
         </div>
         <div class="modal-content-scroll">
-            <div class="modal-body" id="mBody">
-            </div>
+            <div class="modal-body" id="mBody"></div>
         </div>
     </div>
 </div>
 <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
 <script>
-    // --- FIREBASE CONFIGURATION ---
     const firebaseConfig = {
         apiKey: "AIzaSyA9rjaTxTY5mBPg1VDrjFkNV7yv78nqCeo",
         authDomain: "hero-portfolio-1c64b.firebaseapp.com",
@@ -866,20 +872,14 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // --- GOOGLE AUTH LOGIC ---
     let currentUser = null;
-
-  function showUserUI(name, photo) {
+    function showUserUI(name, photo) {
         document.getElementById('auth-container').style.display = 'none';
         document.getElementById('user-info').style.display = 'flex';
         document.getElementById('user-name').innerText = name;
         document.getElementById('user-photo').src = photo;
-
-        if (window.google && google.accounts && google.accounts.id) {
-            google.accounts.id.cancel(); 
-        }
+        if (window.google && google.accounts && google.accounts.id) google.accounts.id.cancel(); 
     }
-
     window.onload = function() {
         if (localStorage.getItem('hero_is_logged') === 'true') {
             currentUser = {
@@ -889,63 +889,39 @@
             showUserUI(currentUser.name, currentUser.photo);
         }
     };
-
     function handleCredentialResponse(response) {
         const payload = JSON.parse(atob(response.credential.split('.')[1]));
-        currentUser = {
-            name: payload.name,
-            photo: payload.picture
-        };
-        
+        currentUser = { name: payload.name, photo: payload.picture };
         localStorage.setItem('hero_user_name', currentUser.name);
         localStorage.setItem('hero_user_photo', currentUser.photo);
         localStorage.setItem('hero_is_logged', 'true');
-
         showUserUI(currentUser.name, currentUser.photo);
     }
 
-    // --- SUBMIT REVIEW TO FIREBASE ---
     const reviewForm = document.getElementById('reviewForm');
     reviewForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        if (!currentUser) {
-            alert("Please sign in with Google to leave a review!");
-            return;
-        }
-
+        if (!currentUser) { alert("Please sign in with Google to leave a review!"); return; }
         const rating = document.querySelector('input[name="rating"]:checked').value;
         const text = document.getElementById('reviewText').value;
-
         try {
             await db.collection("reviews").add({
-                name: currentUser.name,
-                photo: currentUser.photo,
-                rating: parseInt(rating),
-                text: text,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                name: currentUser.name, photo: currentUser.photo, rating: parseInt(rating),
+                text: text, timestamp: firebase.firestore.FieldValue.serverTimestamp()
             });
             reviewForm.reset();
             alert("Thank you for your feedback!");
-        } catch (error) {
-            console.error("Error adding review: ", error);
-        }
+        } catch (error) { console.error("Error adding review: ", error); }
     });
 
-    // --- REAL-TIME REVIEWS UPDATE ---
     db.collection("reviews").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
         const list = document.getElementById('reviewsList');
         list.innerHTML = "";
-        let totalRating = 0;
-        let count = 0;
-
+        let totalRating = 0; let count = 0;
         snapshot.forEach((doc) => {
             const data = doc.data();
-            totalRating += data.rating;
-            count++;
-
+            totalRating += data.rating; count++;
             const stars = "★".repeat(data.rating) + "☆".repeat(5 - data.rating);
-            
             list.innerHTML += `
                 <div class="review-card">
                     <div class="review-header">
@@ -959,7 +935,6 @@
                 </div>
             `;
         });
-
         if (count > 0) {
             const avg = (totalRating / count).toFixed(1);
             document.getElementById('avg-score').innerText = avg;
@@ -970,181 +945,42 @@
         }
     });
 
-    // Sounds
     const cSound = document.getElementById("clickSound");
-    function playSound() {
-        cSound.currentTime = 0;
-        cSound.volume = 0.2;
-        cSound.play();
-    }
-    // Data Mapping
+    function playSound() { cSound.currentTime = 0; cSound.volume = 0.2; cSound.play(); }
+
     const details = {
-        camel: {
-            title: "🐫 Full Movement Controlled Animal + Animations",
-            body: `
-                <h3>🐪 Full Mount Mechanics</h3>
-                <ul>
-                    <li>Seamless mounting and dismounting system for players.</li>
-                    <li>Custom physics and Collision Groups integration to ensure smooth movement across all terrains.</li>
-                </ul>
-                <h3>🎬 Complex Animation States</h3>
-                <ul>
-                    <li>High-quality custom animations for both the player character and the animal model.</li>
-                    <li>Dynamic animation states: Idle, Walking, Running, and Sitting.</li>
-                    <li>Smooth animation blending for realistic transitions.</li>
-                </ul>
-                <h3>🧠 Advanced Script Architecture</h3>
-                <p>Built with a professional architecture utilizing Server, Client, and Module Scripts for maximum performance and exploit protection.</p>
-                <h3>🎮 Dynamic Integration</h3>
-                <p>The player's character scales and synchronizes perfectly with the animal's rig during the ride.</p>
-            `
-        },
-        inventory: {
-            title: "🚀 Advanced Roblox Inventory System",
-            body: `
-                <h3>🎒 Smart Inventory Management</h3>
-                <ul>
-                    <li>Clean and organized inventory interface</li>
-                    <li>Items displayed inside a scrollable grid layout</li>
-                    <li>Supports multiple item categories (Weapons, Potions, Armor, etc.)</li>
-                </ul>
-                <h3>🧠 Object-Oriented Architecture</h3>
-                <p>Built using OOP for a clean and scalable code structure, making it easy to expand for large projects.</p>
-                <h3>🛡️ Secure Server Validation</h3>
-                <p>Important actions are verified on the server to prevent common exploit attempts.</p>
-            `
-        },
-        spin: {
-            title: "🎡 Advanced Roblox Spin Wheel System",
-            body: `
-                <h3>🎯 Weighted Reward System</h3>
-                <ul>
-                    <li>Advanced rarity-based reward system where each item has custom drop chances.</li>
-                    <li>Supports dynamic luck multipliers and GamePass boosts.</li>
-                </ul>
-                <h3>🎬 Smooth Spin Animation</h3>
-                <p>High-quality spinning animation using TweenService with realistic easing and immersive sound effects.</p>
-            `
-        },
-        stamina: {
-            title: "⚡ Advanced Stamina, Sprint & Dash System",
-            body: `
-                <h3>⚡ Stamina-Based Movement</h3>
-                <ul>
-                    <li>Integrated stamina system controlling sprinting and special abilities.</li>
-                    <li>Automatic regeneration with customizable delays and rates.</li>
-                </ul>
-                <h3>🏃 Smooth Sprint Mechanic</h3>
-                <p>Professional movement mechanics with state detection and high-performance RunService implementation.</p>
-            `
-        },
-        clicker: {
-            title: "🖱️ Advanced Click Simulator & Rebirth System",
-            body: `
-                <h3>🔄 Rebirth Progression System</h3>
-                <ul>
-                    <li>Exponential rebirth cost scaling to maintain long-term balanced progression.</li>
-                    <li>Persistent data saving for clicks, gems, and multipliers.</li>
-                </ul>
-                <h3>🛡️ Anti-Exploit Protection</h3>
-                <p>Server-side validation for rewards to prevent click reward and rebirth distribution exploits.</p>
-            `
-        },
-        trading: {
-            title: "🔄 Advanced Player Trading System",
-            body: `
-                <h3>🔐 Secure Trade Validation</h3>
-                <ul>
-                    <li>Unique Trading IDs and server validation to prevent item duplication scams.</li>
-                    <li>Double confirmation system with a safety timer for player security.</li>
-                </ul>
-                <h3>🎨 Interactive Interface</h3>
-                <p>Real-time player list and inventory browser with 3D Viewport previews for items.</p>
-            `
-        },
-        hatching: {
-            title: "🥚 Full Advanced Pet Hatching System",
-            body: `
-                <h3>🎲 Weighted Drop Rate System</h3>
-                <ul>
-                    <li>Custom drop chances for rarities ranging from Common to Secret.</li>
-                    <li>Compatible with luck potions and server-wide events.</li>
-                </ul>
-                <h3>🎨 Advanced Reveal Animation</h3>
-                <p>High-quality reveal sequence with camera manipulation, VFX, and rarity-themed highlights.</p>
-            `
-        },
-        hitbox: {
-            title: "⚔️ Advanced Hitbox System",
-            body: `
-                <h3>⚔️ Custom Server-Side Detection</h3>
-                <ul>
-                    <li>Accurate combat detection for melee weapons to prevent fake hits and client manipulation.</li>
-                    <li>Universal block system and animation-based attack combos.</li>
-                </ul>
-                <h3>⚡ Performance & Security</h3>
-                <p>Minimal overhead with efficient hit detection logic and proper memory management.</p>
-            `
-        },
-        gsm: {
-            title: "⏳ GameSystemsManager (Open Source)",
-            body: `
-                <h3>⏱️ High-Performance Timer System</h3>
-                <ul>
-                    <li>Asynchronous countdown handling using task.wait().</li>
-                    <li>Built-in formatting for Milliseconds, HMS, and Full String times.</li>
-                </ul>
-                <h3>🔄 Round & Reward Logic</h3>
-                <ul>
-                    <li>Modular event-driven architecture for starting, ending, and pausing rounds.</li>
-                    <li>Easily integrates with any existing Roblox game loops.</li>
-                </ul>
-                <h3>🛠️ Developer Friendly</h3>
-                <p>Fully open-sourced on GitHub with complete documentation. Designed to be a drag-and-drop solution for intermediate to advanced developers.</p>
-            `
-        }
+        camel: { title: "🐫 Full Movement Controlled Animal + Animations", body: `<h3>🐪 Full Mount Mechanics</h3><ul><li>Seamless mounting and dismounting system for players.</li><li>Custom physics integration.</li></ul><h3>🎬 Complex Animation States</h3><ul><li>Idle, Walking, Running, and Sitting.</li></ul>` },
+        inventory: { title: "🚀 Advanced Roblox Inventory System", body: `<h3>🎒 Smart Inventory Management</h3><ul><li>Clean interface and categories.</li></ul>` },
+        spin: { title: "🎡 Advanced Roblox Spin Wheel System", body: `<h3>🎯 Weighted Reward System</h3><p>Advanced rarity-based rewards with luck multipliers.</p>` },
+        stamina: { title: "⚡ Advanced Stamina, Sprint & Dash System", body: `<h3>⚡ Stamina-Based Movement</h3><p>Professional movement mechanics with state detection.</p>` },
+        clicker: { title: "🖱️ Advanced Click Simulator & Rebirth System", body: `<h3>🔄 Rebirth Progression System</h3><p>Exponential scaling with server validation.</p>` },
+        trading: { title: "🔄 Advanced Player Trading System", body: `<h3>🔐 Secure Trade Validation</h3><p>Unique Trading IDs to prevent item duplication.</p>` },
+        hatching: { title: "🥚 Full Advanced Pet Hatching System", body: `<h3>🎲 Weighted Drop Rate System</h3><p>High-quality reveal sequence with camera manipulation.</p>` },
+        hitbox: { title: "⚔️ Advanced Hitbox System", body: `<h3>⚔️ Custom Server-Side Detection</h3><p>Accurate melee combat detection for fair PvP.</p>` },
+        gsm: { title: "⏳ GameSystemsManager (Open Source)", body: `<h3>⏱️ High-Performance Timer System</h3><p>Open-source Luau module for rounds and rewards.</p>` }
     };
-    // Functions
+
     function openSystem(key) {
-        const data = details[key];
-        if (!data) return;
+        const data = details[key]; if (!data) return;
         document.getElementById("mTitle").innerText = data.title;
         document.getElementById("mBody").innerHTML = data.body;
         document.getElementById("modalOverlay").style.display = "flex";
         playSound();
     }
-    function closeModal() {
-        document.getElementById("modalOverlay").style.display = "none";
-        playSound();
-    }
-    function joinGame(url) {
-        playSound();
-        window.open(url, "_blank");
-    }
-    // Observer for fade-in
+    function closeModal() { document.getElementById("modalOverlay").style.display = "none"; playSound(); }
+    function joinGame(url) { playSound(); window.open(url, "_blank"); }
+
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("show");
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add("show"); });
+    }, { threshold: 0.1 });
     document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
-    // Custom Cursor
+
     const cursor = document.querySelector(".cursor");
     document.addEventListener("mousemove", (e) => {
-        cursor.style.left = e.clientX + "px";
-        cursor.style.top = e.clientY + "px";
+        cursor.style.left = e.clientX + "px"; cursor.style.top = e.clientY + "px";
     });
-    // Close on click outside
-    window.onclick = function(event) {
-        const modal = document.getElementById("modalOverlay");
-        if (event.target == modal) {
-            closeModal();
-        }
-    }
+
+    window.onclick = function(event) { if (event.target == document.getElementById("modalOverlay")) closeModal(); }
 </script>
 </body>
 </html>
