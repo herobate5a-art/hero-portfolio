@@ -314,6 +314,15 @@
         box-shadow: 0 0 15px #22c55e;
         transform: scale(1.03);
     }
+    /* NEW REPO BUTTON STYLE */
+    .repo-btn {
+        background: #2563eb;
+        color: white;
+    }
+    .repo-btn:hover {
+        box-shadow: 0 0 15px #2563eb;
+        transform: scale(1.03);
+    }
     .coming {
         background: #1e293b;
         color: #64748b;
@@ -593,6 +602,7 @@
         background: #38bdf8;
         color: black;
         box-shadow: 0 0 15px #38bdf8aa;
+        transform: scale(1.03); /* نفس السكيل بتاع البروجيكتس */
     }
 </style>
 </head>
@@ -742,8 +752,8 @@
 
 <section id="libraries" class="hidden">
     <h2>Open Source Libraries</h2>
-    <div class="projects">
-        <div class="book-card">
+    <div class="projects" style="display: flex; justify-content: center;">
+        <div class="book-card" style="width: 100%; max-width: 350px;">
             <div class="card-image-placeholder" style="border-bottom: 2px solid #0284c7;">
                 <span class="pro-logo-text" style="font-size: 2rem;">GSM Module</span>
             </div>
@@ -752,7 +762,7 @@
                 <p>A professional Open-Source Luau module for high-performance game timers, rounds, and reward systems.</p>
                 <div class="buttons">
                     <button class="view" onclick="openSystem('gsm')">Read Docs</button>
-                    <button class="test" style="background: #2563eb;" onclick="window.open('https://github.com/herobate5a-art/Roblox-Timer-System', '_blank')">GitHub Repo</button>
+                    <button class="repo-btn" onclick="window.open('https://github.com/herobate5a-art/Roblox-Timer-System', '_blank')">GitHub Repo</button>
                 </div>
             </div>
         </div>
@@ -1087,7 +1097,7 @@
                     <li>Universal block system and animation-based attack combos.</li>
                 </ul>
                 <h3>⚡ Performance & Security</h3>
-                <p>Minimal network overhead with efficient hit detection logic and proper memory management.</p>
+                <p>Minimal overhead with efficient hit detection logic and proper memory management.</p>
             `
         },
         // NEW GSM LIBRARY DATA
