@@ -194,14 +194,15 @@
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.2);
     }
     
-    /* NEW BOOK STYLE FOR LIBRARIES */
+    /* NEW BOOK STYLE FOR LIBRARIES (UPDATED) */
     .book-card {
         background: #0f172a;
         border-radius: 6px 16px 16px 6px;
         overflow: hidden;
         border: 1px solid #1e293b;
         border-left: 15px solid #0284c7; /* Book Spine */
-        box-shadow: 5px 5px 15px rgba(0,0,0,0.5), inset -5px 0 0 #cbd5e1; /* Pages effect */
+        /* Removed white line (pages effect) for cleaner script look */
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.5); 
         transition: .4s;
         display: flex;
         flex-direction: column;
@@ -210,7 +211,7 @@
     .book-card:hover {
         transform: translateY(-10px) rotateY(-5deg);
         border-color: #38bdf8;
-        box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.2), inset -5px 0 0 #cbd5e1;
+        box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.2);
     }
 
     /* NEW CSS-BASED PROFESSIONAL 3D IMAGE REPLACEMENT */
@@ -602,7 +603,7 @@
         background: #38bdf8;
         color: black;
         box-shadow: 0 0 15px #38bdf8aa;
-        transform: scale(1.03); /* نفس السكيل بتاع البروجيكتس */
+        transform: scale(1.03); 
     }
 </style>
 </head>
@@ -752,7 +753,7 @@
 
 <section id="libraries" class="hidden">
     <h2>Open Source Libraries</h2>
-    <div class="projects" style="display: flex; justify-content: center;">
+    <div style="display: flex; justify-content: flex-start; margin-top: 40px;">
         <div class="book-card" style="width: 100%; max-width: 350px;">
             <div class="card-image-placeholder" style="border-bottom: 2px solid #0284c7;">
                 <span class="pro-logo-text" style="font-size: 2rem;">GSM Module</span>
@@ -853,7 +854,6 @@
 <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
 <script>
     // --- FIREBASE CONFIGURATION ---
-    // --- FIREBASE CONFIGURATION ---
     const firebaseConfig = {
         apiKey: "AIzaSyA9rjaTxTY5mBPg1VDrjFkNV7yv78nqCeo",
         authDomain: "hero-portfolio-1c64b.firebaseapp.com",
@@ -869,7 +869,6 @@
     // --- GOOGLE AUTH LOGIC ---
     let currentUser = null;
 
-    // دالة لعرض بيانات المستخدم في الصفحة
   function showUserUI(name, photo) {
         document.getElementById('auth-container').style.display = 'none';
         document.getElementById('user-info').style.display = 'flex';
@@ -898,24 +897,12 @@
             photo: payload.picture
         };
         
-        // التعديل الجديد: حفظ البيانات في المتصفح عشان يفتكرك
         localStorage.setItem('hero_user_name', currentUser.name);
         localStorage.setItem('hero_user_photo', currentUser.photo);
         localStorage.setItem('hero_is_logged', 'true');
 
         showUserUI(currentUser.name, currentUser.photo);
     }
-
-    // التعديل الجديد: تشيك عند الريفريش
-    window.onload = function() {
-        if (localStorage.getItem('hero_is_logged') === 'true') {
-            currentUser = {
-                name: localStorage.getItem('hero_user_name'),
-                photo: localStorage.getItem('hero_user_photo')
-            };
-            showUserUI(currentUser.name, currentUser.photo);
-        }
-    };
 
     // --- SUBMIT REVIEW TO FIREBASE ---
     const reviewForm = document.getElementById('reviewForm');
@@ -983,7 +970,6 @@
         }
     });
 
-    // --- YOUR ORIGINAL SCRIPTS ---
     // Sounds
     const cSound = document.getElementById("clickSound");
     function playSound() {
@@ -1100,7 +1086,6 @@
                 <p>Minimal overhead with efficient hit detection logic and proper memory management.</p>
             `
         },
-        // NEW GSM LIBRARY DATA
         gsm: {
             title: "⏳ GameSystemsManager (Open Source)",
             body: `
