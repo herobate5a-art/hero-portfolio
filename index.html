@@ -194,13 +194,13 @@
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.2);
     }
     
-    /* NEW BOOK STYLE FOR LIBRARIES (UPDATED ALIGNMENT) */
+    /* NEW BOOK STYLE FOR LIBRARIES */
     .book-card {
         background: #0f172a;
         border-radius: 6px 16px 16px 6px;
         overflow: hidden;
         border: 1px solid #1e293b;
-        border-left: 15px solid #0284c7; /* Book Spine */
+        border-left: 15px solid #0284c7;
         box-shadow: 5px 5px 15px rgba(0,0,0,0.5); 
         transition: .4s;
         display: flex;
@@ -213,7 +213,6 @@
         box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.2);
     }
 
-    /* CSS-BASED PROFESSIONAL 3D IMAGE REPLACEMENT */
     .card-image-placeholder {
         width: 100%;
         height: 180px;
@@ -307,7 +306,7 @@
         color: black;
     }
     .test {
-        background: #2563eb; /* UPDATED TO BLUE */
+        background: #2563eb; 
         color: white;
     }
     .test:hover {
@@ -356,14 +355,8 @@
         animation: modalScale 0.3s ease-out;
     }
     @keyframes modalScale {
-        from {
-            transform: scale(0.9);
-            opacity: 0;
-        }
-        to {
-            transform: scale(1);
-            opacity: 1;
-        }
+        from { transform: scale(0.9); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
     }
     .modal-header {
         padding: 25px 35px;
@@ -375,9 +368,7 @@
         margin: 0;
         color: #38bdf8;
     }
-    .modal-header h2::after {
-        display: none;
-    }
+    .modal-header h2::after { display: none; }
     .close-btn {
         position: absolute;
         top: 20px;
@@ -599,7 +590,7 @@
         transition: .3s;
         cursor: pointer;
     }
-  .social-btn:hover {
+    .social-btn:hover {
         background: #38bdf8;
         color: black;
         box-shadow: 0 0 15px #38bdf8aa;
@@ -637,9 +628,7 @@
     <h2>Featured Systems</h2>
     <div class="projects">
         <div class="card">
-            <div class="card-image-placeholder">
-                <span class="pro-logo-text">HeroDev!</span>
-            </div>
+            <div class="card-image-placeholder"><span class="pro-logo-text">HeroDev!</span></div>
             <div class="card-content">
                 <h3>Full Movement Controlled Animal + Animations</h3>
                 <p>Advanced animal movement with character mounting and custom animations.</p>
@@ -650,9 +639,7 @@
             </div>
         </div>
         <div class="card">
-            <div class="card-image-placeholder">
-                <span class="pro-logo-text">HeroDev!</span>
-            </div>
+            <div class="card-image-placeholder"><span class="pro-logo-text">HeroDev!</span></div>
             <div class="card-content">
                 <h3>Advanced Inventory</h3>
                 <p>Full Object-Oriented Inventory system with categories and saving.</p>
@@ -663,9 +650,7 @@
             </div>
         </div>
         <div class="card">
-            <div class="card-image-placeholder">
-                <span class="pro-logo-text">HeroDev!</span>
-            </div>
+            <div class="card-image-placeholder"><span class="pro-logo-text">HeroDev!</span></div>
             <div class="card-content">
                 <h3>Spin Wheel UI</h3>
                 <p>Weighted reward system with luck multipliers and sounds.</p>
@@ -676,9 +661,7 @@
             </div>
         </div>
         <div class="card">
-            <div class="card-image-placeholder">
-                <span class="pro-logo-text">HeroDev!</span>
-            </div>
+            <div class="card-image-placeholder"><span class="pro-logo-text">HeroDev!</span></div>
             <div class="card-content">
                 <h3>Stamina & Sprint</h3>
                 <p>Advanced movement mechanics with Dash and state detection.</p>
@@ -689,9 +672,7 @@
             </div>
         </div>
         <div class="card">
-            <div class="card-image-placeholder">
-                <span class="pro-logo-text">HeroDev!</span>
-            </div>
+            <div class="card-image-placeholder"><span class="pro-logo-text">HeroDev!</span></div>
             <div class="card-content">
                 <h3>Click Simulator</h3>
                 <p>Progression loop with Clicks, Gems, and Rebirth scaling.</p>
@@ -702,9 +683,7 @@
             </div>
         </div>
         <div class="card">
-            <div class="card-image-placeholder">
-                <span class="pro-logo-text">HeroDev!</span>
-            </div>
+            <div class="card-image-placeholder"><span class="pro-logo-text">HeroDev!</span></div>
             <div class="card-content">
                 <h3>Player Trading</h3>
                 <p>Secure real-time trading with double confirmation.</p>
@@ -715,9 +694,7 @@
             </div>
         </div>
         <div class="card">
-            <div class="card-image-placeholder">
-                <span class="pro-logo-text">HeroDev!</span>
-            </div>
+            <div class="card-image-placeholder"><span class="pro-logo-text">HeroDev!</span></div>
             <div class="card-content">
                 <h3>Pet Hatching</h3>
                 <p>Multi-egg system with reveal animations and rarity.</p>
@@ -728,9 +705,7 @@
             </div>
         </div>
         <div class="card">
-            <div class="card-image-placeholder">
-                <span class="pro-logo-text">HeroDev!</span>
-            </div>
+            <div class="card-image-placeholder"><span class="pro-logo-text">HeroDev!</span></div>
             <div class="card-content">
                 <h3>Combat Hitbox</h3>
                 <p>Server-side hitbox detection for fair and responsive PvP.</p>
@@ -821,6 +796,7 @@
         </div>
     </div>
 </section>
+
 <section id="contact" class="hidden">
     <h2>Get In Touch</h2>
     <div class="contact-info">
@@ -830,23 +806,24 @@
                 GitHub
             </a>
             
-            <a href="https://discord.com/users/heroo__dev" target="_blank" class="social-btn discord-theme">
+            <a href="https://discord.com/users/1351930936580767775" target="_blank" class="social-btn discord-theme">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.419-2.157 2.419z"/></svg>
                 Discord
             </a>
             
-            <a href="mailto:redae1873@gmail.com" class="social-btn email-theme">
+            <a href="mailto:redae1873@gmail.com" target="_blank" class="social-btn email-theme">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                 Email
             </a>
         </div>
-        
         <p style="margin-top: 25px; font-size: 0.95rem; color: #94a3b8;">Available for commissions and long-term projects.</p>
     </div>
 </section>
+
 <footer>
     <p>© 2026 Hero Roblox Developer | Crafted for Performance</p>
 </footer>
+
 <div class="modal-overlay" id="modalOverlay">
     <div class="modal-container">
         <button class="close-btn" onclick="closeModal()">&times;</button>
@@ -858,7 +835,9 @@
         </div>
     </div>
 </div>
+
 <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
+
 <script>
     const firebaseConfig = {
         apiKey: "AIzaSyA9rjaTxTY5mBPg1VDrjFkNV7yv78nqCeo",
@@ -940,8 +919,6 @@
             document.getElementById('avg-score').innerText = avg;
             document.getElementById('avg-stars').innerText = "★".repeat(Math.round(avg));
             document.getElementById('review-count').innerText = `Based on ${count} reviews`;
-        } else {
-            document.getElementById('review-count').innerText = "No reviews yet.";
         }
     });
 
@@ -963,7 +940,7 @@
         },
         stamina: { 
             title: "⚡ Advanced Stamina, Sprint & Dash System", 
-            body: `<h3>⚡ Stamina-Based Movement</h3><ul><li>Dynamic stamina drain for sprinting and dashing.</li><li>Smart regeneration system with configurable delays.</li></ul><h3>🏃 Sprint & Dash Mechanics</h3><ul><li>Toggle or Hold sprint modes with custom FOV effects.</li><li>State detection (Jumping, Falling, Running) to adjust behavior.</li></ul><h3>🎬 Animation Integration</h3><ul><li>Smooth blending between walk and sprint animations based on speed.</li></ul>` 
+            body: `<h3>⚡ Stamina-Based Movement</h3><ul><li>Dynamic stamina drain for sprinting and dashing.</li><li>Smart regeneration system with configurable delays.</li></ul><h3>🏃 Sprint & Dash Mechanics</h3><ul><li>Toggle or Hold sprint modes with custom FOV effects.</li><li>State detection (Jumping, Falling, Running) to adjust behavior.</li></ul><h3>🎬 Animation Integration</h3><ul><li>Smooth blending between walk and sprint animations based on speed.</li><li>Animation slows down when airborne.</li></ul>` 
         },
         clicker: { 
             title: "🖱️ Advanced Click Simulator & Rebirth System", 
