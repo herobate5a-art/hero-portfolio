@@ -512,11 +512,27 @@
         color: #fbbf24;
         text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
     }
+    
+    /* REVIEWS LIST SCROLL MODIFICATION */
     .reviews-list {
         display: flex;
         flex-direction: column;
         gap: 15px;
+        max-height: 500px; /* التعديل هنا لتثبيت الطول */
+        overflow-y: auto;  /* التعديل هنا لعمل السكرول */
+        padding-right: 10px;
     }
+    .reviews-list::-webkit-scrollbar {
+        width: 6px;
+    }
+    .reviews-list::-webkit-scrollbar-track {
+        background: #020617;
+    }
+    .reviews-list::-webkit-scrollbar-thumb {
+        background: #38bdf8;
+        border-radius: 10px;
+    }
+
     .review-card {
         background: #020617;
         padding: 20px;
@@ -598,6 +614,41 @@
     }
     .discord-theme:hover { background: #5865F2; border-color: #5865F2; color: white; }
     .email-theme:hover { background: #ea4335; border-color: #ea4335; color: white; }
+
+    /* RESPONSIVE NAV (HAMBURGER MENU) MODIFICATION */
+    .menu-toggle {
+        display: none;
+        font-size: 28px;
+        color: #38bdf8;
+        cursor: pointer;
+        user-select: none;
+    }
+    @media (max-width: 850px) {
+        .menu-toggle {
+            display: block;
+        }
+        nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(10px);
+            flex-direction: column;
+            padding: 20px 0;
+            border-bottom: 1px solid #1e293b;
+        }
+        nav.active {
+            display: flex;
+        }
+        nav a {
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.2rem;
+            margin-left: 0;
+        }
+    }
 </style>
 </head>
 <body>
@@ -605,7 +656,8 @@
 <div class="cursor"></div>
 <header>
     <div class="logo">HeroDev</div>
-    <nav>
+    <div class="menu-toggle" id="mobile-menu-btn">☰</div>
+    <nav id="nav-menu">
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="#libraries">Libraries</a>
@@ -624,6 +676,7 @@
         I am a specialized Roblox developer with deep expertise in <strong>Lua scripting</strong>, creating advanced game systems, and high-performance gameplay mechanics. I focus on building scalable, exploit-secure, and professional systems for simulators, RPGs, and combat-based games.
     </p>
 </section>
+
 <section id="projects" class="hidden">
     <h2>Featured Systems</h2>
     <div class="projects">
@@ -984,6 +1037,18 @@
     });
 
     window.onclick = function(event) { if (event.target == document.getElementById("modalOverlay")) closeModal(); }
+
+    // Mobile Menu Logic MODIFICATION
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const navMenu = document.getElementById('nav-menu');
+    mobileMenuBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+    document.querySelectorAll('#nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        });
+    });
 </script>
 </body>
 </html>
