@@ -336,6 +336,7 @@ const systemVideoFiles = {
     clicker: "ClickSemlutor&RebirthSystem.mp4",
     hatching: "HatchingPets.mp4",
     hitbox: "CombatSystem.mp4",
+    cannon: "Cannon.mp4",
     trading: null,
     gsm: null
 };
