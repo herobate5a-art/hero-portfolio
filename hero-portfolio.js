@@ -267,6 +267,37 @@ const details = {
         title: "🚀 Advanced Roblox Inventory System",
         body: `<h3>🎒 Smart Inventory Management</h3><ul><li>Clean and organized grid layout for items.</li><li>Supports multiple categories: Weapons, Armor, Consumables.</li><li>Automatic real-time updates on item gain or loss.</li></ul><h3>🧠 Object-Oriented Architecture</h3><ul><li>Built with scalable OOP principles for easy expansion.</li><li>Modular design for seamless integration with shops and trading.</li></ul><h3>🛡️ Secure Server Validation</h3><ul><li>All inventory actions are verified on the server to prevent exploits.</li><li>DataStore integration for persistent item saving.</li></ul>`
     },
+    cannon: {
+    title: "💣 Advanced Physics Cannon System",
+    body: `
+    <h3>🧠 Object-Oriented Architecture</h3>
+    <ul>
+        <li>Modular cannon system built using OOP principles.</li>
+        <li>Separate classes for Cannon, Projectile, and Physics Handler.</li>
+        <li>Easily extendable for multiple weapon types.</li>
+    </ul>
+
+    <h3>🌍 Realistic Physics Simulation</h3>
+    <ul>
+        <li>Projectile motion based on real physics equations.</li>
+        <li>Velocity, gravity, and force applied dynamically.</li>
+        <li>Arc-based shooting instead of straight raycasting.</li>
+    </ul>
+
+    <h3>⚙️ Dynamic Force & Power Control</h3>
+    <ul>
+        <li>Adjustable launch power affecting distance and speed.</li>
+        <li>Angle-based shooting system.</li>
+        <li>Supports different projectile weights and behaviors.</li>
+    </ul>
+
+    <h3>🛡️ Server-Side Handling</h3>
+    <ul>
+        <li>All physics calculations validated on server.</li>
+        <li>Prevents client-side manipulation.</li>
+    </ul>
+    `
+},
     spin: {
         title: "🎡 Advanced Roblox Spin Wheel System",
         body: `<h3>🎯 Weighted Reward System</h3><ul><li>Advanced rarity-based rewards with custom drop chances.</li><li>Dynamic Luck Multiplier system for GamePass boosts.</li></ul><h3>🎨 Dynamic Generation</h3><ul><li>Wheel UI builds automatically based on reward tables.</li><li>Smooth TweenService animations with immersive audio feedback.</li></ul><h3>🛡️ Anti-Exploit Measures</h3><ul><li>Server-authoritative spin results to prevent reward manipulation.</li><li>Daily free spin system with DataStore-backed cooldowns.</li></ul>`
