@@ -15,10 +15,17 @@ let currentUser = null;
 let completeLoaderSequence = null;
 
 function showUserUI(name, photo) {
-    document.getElementById("auth-container").style.display = "none";
-    document.getElementById("user-info").style.display = "flex";
-    document.getElementById("user-name").innerText = name;
-    document.getElementById("user-photo").src = photo;
+    const authContainer = document.getElementById("auth-container");
+    const userInfo = document.getElementById("user-info");
+    const userName = document.getElementById("user-name");
+    const userPhoto = document.getElementById("user-photo");
+
+    if (!authContainer || !userInfo || !userName || !userPhoto) return;
+
+    authContainer.style.display = "none";
+    userInfo.style.display = "flex";
+    userName.innerText = name;
+    userPhoto.src = photo;
 
     if (window.google && google.accounts && google.accounts.id) {
         google.accounts.id.cancel();
@@ -45,33 +52,37 @@ function handleCredentialResponse(response) {
 }
 
 const reviewForm = document.getElementById("reviewForm");
-reviewForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (!currentUser) {
-        alert("Please sign in with Google to leave a review!");
-        return;
-    }
+if (reviewForm) {
+    reviewForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!currentUser) {
+            alert("Please sign in with Google to leave a review!");
+            return;
+        }
 
-    const rating = document.querySelector('input[name="rating"]:checked').value;
-    const text = document.getElementById("reviewText").value;
+        const selectedRating = document.querySelector('input[name="rating"]:checked');
+        const reviewText = document.getElementById("reviewText");
+        if (!selectedRating || !reviewText) return;
 
-    try {
-        await db.collection("reviews").add({
-            name: currentUser.name,
-            photo: currentUser.photo,
-            rating: parseInt(rating, 10),
-            text,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        reviewForm.reset();
-        alert("Thank you for your feedback!");
-    } catch (error) {
-        console.error("Error adding review:", error);
-    }
-});
+        try {
+            await db.collection("reviews").add({
+                name: currentUser.name,
+                photo: currentUser.photo,
+                rating: parseInt(selectedRating.value, 10),
+                text: reviewText.value,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            reviewForm.reset();
+            alert("Thank you for your feedback!");
+        } catch (error) {
+            console.error("Error adding review:", error);
+        }
+    });
+}
 
 db.collection("reviews").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
     const list = document.getElementById("reviewsList");
+    if (!list) return;
     list.innerHTML = "";
     let totalRating = 0;
     let count = 0;
@@ -98,9 +109,12 @@ db.collection("reviews").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
 
     if (count > 0) {
         const avg = (totalRating / count).toFixed(1);
-        document.getElementById("avg-score").innerText = avg;
-        document.getElementById("avg-stars").innerText = "★".repeat(Math.round(avg));
-        document.getElementById("review-count").innerText = `Based on ${count} reviews`;
+        const avgScore = document.getElementById("avg-score");
+        const avgStars = document.getElementById("avg-stars");
+        const reviewCount = document.getElementById("review-count");
+        if (avgScore) avgScore.innerText = avg;
+        if (avgStars) avgStars.innerText = "★".repeat(Math.round(avg));
+        if (reviewCount) reviewCount.innerText = `Based on ${count} reviews`;
     }
     // Re-run tilt setup to include new review cards
     setupCardTilt();
@@ -108,9 +122,10 @@ db.collection("reviews").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
 
 const cSound = document.getElementById("clickSound");
 function playSound() {
+    if (!cSound) return;
     cSound.currentTime = 0;
     cSound.volume = 0.2;
-    cSound.play();
+    void cSound.play().catch(() => {});
 }
 
 function initLoaderExperience() {
@@ -403,7 +418,9 @@ function openSystem(key) {
     modalTitle.innerText = data.title;
     modalBody.innerHTML = `${getModalMediaMarkup(key)}${data.body}`;
     wireModalMediaFallback();
-    document.getElementById("modalOverlay").style.display = "flex";
+    const modalOverlay = document.getElementById("modalOverlay");
+    if (!modalOverlay) return;
+    modalOverlay.style.display = "flex";
     playSound();
 }
 
@@ -413,7 +430,9 @@ function closeModal() {
         modalVideo.pause();
         modalVideo.currentTime = 0;
     }
-    document.getElementById("modalOverlay").style.display = "none";
+    const modalOverlay = document.getElementById("modalOverlay");
+    if (!modalOverlay) return;
+    modalOverlay.style.display = "none";
     playSound();
 }
 
@@ -546,19 +565,21 @@ let cursorY = window.innerHeight / 2;
 let cursorCurrentX = cursorX;
 let cursorCurrentY = cursorY;
 
-document.addEventListener("mousemove", (e) => {
-    cursorX = e.clientX;
-    cursorY = e.clientY;
-});
+if (cursor) {
+    document.addEventListener("mousemove", (e) => {
+        cursorX = e.clientX;
+        cursorY = e.clientY;
+    });
 
-function animateCursor() {
-    cursorCurrentX += (cursorX - cursorCurrentX) * 0.28;
-    cursorCurrentY += (cursorY - cursorCurrentY) * 0.28;
-    cursor.style.left = `${cursorCurrentX}px`;
-    cursor.style.top = `${cursorCurrentY}px`;
-    requestAnimationFrame(animateCursor);
+    function animateCursor() {
+        cursorCurrentX += (cursorX - cursorCurrentX) * 0.28;
+        cursorCurrentY += (cursorY - cursorCurrentY) * 0.28;
+        cursor.style.left = `${cursorCurrentX}px`;
+        cursor.style.top = `${cursorCurrentY}px`;
+        requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
 }
-animateCursor();
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -588,7 +609,7 @@ function setupStaggerReveal() {
 setupStaggerReveal();
 
 function setupProjectCardViewportReveal() {
-    const cards = document.querySelectorAll(".projects .card");
+    const cards = document.querySelectorAll(".projects .card, .languages-grid .card");
     if (cards.length === 0) return;
 
     cards.forEach((card, index) => {
@@ -617,7 +638,10 @@ function setupProjectCardViewportReveal() {
             card.style.opacity = "1";
             card.style.transform = "translateY(0)";
 
+            let finalized = false;
             const finalizeReveal = () => {
+                if (finalized) return;
+                finalized = true;
                 card.dataset.revealed = "true";
                 card.style.transitionDelay = "0ms";
                 card.style.willChange = "";
@@ -650,18 +674,24 @@ function updateOnScroll() {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const progress = docHeight > 0 ? scrollTop / docHeight : 0;
-    scrollProgress.style.transform = `scaleX(${Math.min(Math.max(progress, 0), 1)})`;
-
-    if (scrollTop > 40) {
-        header.classList.add("scrolled");
-    } else {
-        header.classList.remove("scrolled");
+    if (scrollProgress) {
+        scrollProgress.style.transform = `scaleX(${Math.min(Math.max(progress, 0), 1)})`;
     }
 
-    if (scrollTop > 500) {
-        backToTop.classList.add("show");
-    } else {
-        backToTop.classList.remove("show");
+    if (header) {
+        if (scrollTop > 40) {
+            header.classList.add("scrolled");
+        } else {
+            header.classList.remove("scrolled");
+        }
+    }
+
+    if (backToTop) {
+        if (scrollTop > 500) {
+            backToTop.classList.add("show");
+        } else {
+            backToTop.classList.remove("show");
+        }
     }
 
     if (stickyHireCta) {
@@ -687,9 +717,11 @@ function updateOnScroll() {
 window.addEventListener("scroll", updateOnScroll, { passive: true });
 updateOnScroll();
 
-backToTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
+if (backToTop) {
+    backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+}
 
 if (stickyHireCta) {
     stickyHireCta.addEventListener("click", () => {
@@ -698,19 +730,22 @@ if (stickyHireCta) {
     });
 }
 
-window.onclick = function (event) {
-    if (event.target === document.getElementById("modalOverlay")) closeModal();
-};
+window.addEventListener("click", (event) => {
+    const modalOverlay = document.getElementById("modalOverlay");
+    if (modalOverlay && event.target === modalOverlay) closeModal();
+});
 
 const mobileMenuBtn = document.getElementById("mobile-menu-btn");
 const navMenu = document.getElementById("nav-menu");
-mobileMenuBtn.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-});
+if (mobileMenuBtn && navMenu) {
+    mobileMenuBtn.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+    });
+}
 
 document.querySelectorAll("#nav-menu a").forEach((link) => {
     link.addEventListener("click", () => {
-        navMenu.classList.remove("active");
+        if (navMenu) navMenu.classList.remove("active");
     });
 });
 

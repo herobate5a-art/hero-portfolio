@@ -1,4 +1,4 @@
-﻿/* GLOBAL */
+/* GLOBAL */
     * {
         box-sizing: border-box;
         margin: 0;
@@ -122,6 +122,43 @@
         color: #94a3b8;
         font-size: 1.2rem;
     }
+
+#languages {
+    padding-top: 26px;
+}
+
+.languages-subtitle {
+    max-width: 760px;
+    color: #93c5fd;
+    margin-bottom: 24px;
+    font-size: 1.02rem;
+}
+
+.languages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.language-card {
+    border-color: rgba(56, 189, 248, 0.26);
+    background:
+        linear-gradient(155deg, rgba(14, 116, 144, 0.18), rgba(15, 23, 42, 0.94) 52%),
+        #0f172a;
+}
+
+.language-card .card-content {
+    min-height: 210px;
+}
+
+.language-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
+
+.language-card p {
+    margin-bottom: 14px;
+}
     .btn {
         display: inline-block;
         margin-top: 25px;
