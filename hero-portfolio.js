@@ -317,6 +317,10 @@ const details = {
         title: "🎡 Advanced Roblox Spin Wheel System",
         body: `<h3>🎯 Weighted Reward System</h3><ul><li>Advanced rarity-based rewards with custom drop chances.</li><li>Dynamic Luck Multiplier system for GamePass boosts.</li></ul><h3>🎨 Dynamic Generation</h3><ul><li>Wheel UI builds automatically based on reward tables.</li><li>Smooth TweenService animations with immersive audio feedback.</li></ul><h3>🛡️ Anti-Exploit Measures</h3><ul><li>Server-authoritative spin results to prevent reward manipulation.</li><li>Daily free spin system with DataStore-backed cooldowns.</li></ul>`
     },
+    spincards: {
+        title: "🃏 SpinCards - Advanced Roblox Card Spin System",
+        body: `<h3>🧠 Full OOP Architecture</h3><ul><li>Built with object-oriented design for clean, maintainable systems.</li><li>Clear class responsibilities for card logic, spin control, and reward handling.</li></ul><h3>🧩 ModuleScript-Based Design</h3><ul><li>Core features are split into reusable ModuleScripts for easy updates.</li><li>Supports fast iteration and extension without rewriting base systems.</li></ul><h3>📈 Scalable & Production Ready</h3><ul><li>Designed to scale with more card sets, rarities, and effects.</li><li>Structured for long-term growth and integration into larger game economies.</li></ul>`
+    },
     stamina: {
         title: "⚡ Advanced Stamina, Sprint & Dash System",
         body: `<h3>⚡ Stamina-Based Movement</h3><ul><li>Dynamic stamina drain for sprinting and dashing.</li><li>Smart regeneration system with configurable delays.</li></ul><h3>🏃 Sprint & Dash Mechanics</h3><ul><li>Toggle or Hold sprint modes with custom FOV effects.</li><li>State detection (Jumping, Falling, Running) to adjust behavior.</li></ul><h3>🎬 Animation Integration</h3><ul><li>Smooth blending between walk and sprint animations based on speed.</li><li>Animation slows down when airborne.</li></ul>`
@@ -347,6 +351,7 @@ const systemVideoFiles = {
     camel: "Full control and animations CamelSystem.mp4",
     inventory: "InventorySystem&Armor.mp4",
     spin: "SpienWheel.mp4",
+    spincards: "SpinCards.mp4",
     stamina: "Stamina and Sprint System.mp4",
     clicker: "ClickSemlutor&RebirthSystem.mp4",
     hatching: "HatchingPets.mp4",
