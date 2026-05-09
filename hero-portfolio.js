@@ -344,6 +344,10 @@ const details = {
     gsm: {
         title: "⏳ GameSystemsManager (Open Source Library)",
         body: `<h3>⏱️ High-Performance Timer System</h3><p>GameSystemsManager (GSM) is a professional Open-Source Luau module designed for high-performance management of game rounds, timers, and automated reward cycles.</p><h3>🧩 Key Features</h3><ul><li>Scalable timer architecture for complex round-based games.</li><li>Frame-independent synchronization across client and server.</li><li>Lightweight and modular, easily integrated into any codebase.</li></ul>`
+    },
+    projectiles: {
+        title: "🎯 Projectiles Handler (Open Source Library)",
+        body: `<h3>🧠 Full OOP Projectile Framework</h3><ul><li>Built with full object-oriented architecture for maintainable weapon systems.</li><li>Modular structure makes behavior easy to extend and tune per weapon type.</li></ul><h3>🔫 Multi-Weapon Ammo Support</h3><ul><li>Handles sniper, pistol, machine gun, and other weapon categories.</li><li>Supports physical ammo workflows for realistic projectile behavior.</li></ul><h3>⚙️ Scalable Integration</h3><ul><li>Designed for scalable combat systems in larger Roblox projects.</li><li>Easy to plug into existing module-based game architectures.</li></ul>`
     }
 };
 
@@ -358,7 +362,8 @@ const systemVideoFiles = {
     hitbox: "CombatSystem.mp4",
     cannon: "Cannon.mp4",
     trading: null,
-    gsm: null
+    gsm: null,
+    projectiles: null
 };
 
 function getModalMediaMarkup(key) {
